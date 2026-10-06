@@ -1,5 +1,7 @@
 # GAMBOL — Design Workspace
 
+> 📘 **วิธีใช้และวิธีรันทั้งหมดอยู่ใน [HOW-TO.md](HOW-TO.md)** ตั้งแต่ติดตั้ง รัน แก้งาน ไปจนถึงอัปเดตลิงก์ที่แชร์
+
 ```
 gambol/
 ├── library/                       หน้า Design Library สำหรับส่งให้คนอื่นดู (offline)
