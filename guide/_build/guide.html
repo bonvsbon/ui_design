@@ -1,0 +1,1045 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>GAMBOL Design Library — คู่มือการดูและเลือกแบบ</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<style>
+@page { size: A4; margin: 0; }
+:root {
+  --ink: #17171a; --ink-2: #3a3a40; --muted: #6b6b73; --line: #e6e4df; --paper: #faf8f4; --soft: #f3f1ec;
+  --red: #c8102e; --red-2: #9f0c24; --red-soft: #fcebee;
+  --green: #137a4b; --green-soft: #e8f5ee; --amber: #a35f00; --amber-soft: #fff3df; --blue: #1d4ed8; --blue-soft: #ebf1ff;
+  --f: 'Manrope', 'IBM Plex Sans Thai', sans-serif;
+}
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; background: #888; color: var(--ink); font: 400 9.6pt/1.7 var(--f); }
+h1, h2, h3, h4, p { margin: 0; }
+b, strong { font-weight: 600; }
+a { color: inherit; text-decoration: none; }
+ul { margin: 0; padding: 0; list-style: none; }
+@media print { body { background: #fff; } }
+
+/* ---------- page shell ---------- */
+.pg { width: 210mm; height: 297mm; position: relative; overflow: hidden; background: #fff; break-after: page; padding: 17mm 17mm 22mm; display: flex; flex-direction: column; }
+.pg:last-child { break-after: auto; }
+.pg > .inner { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+.spread > .dz { margin-top: auto; margin-bottom: auto; }
+.pf { position: absolute; left: 17mm; right: 17mm; bottom: 9mm; display: flex; justify-content: space-between; align-items: center; font: 600 7pt var(--f); color: #a3a3aa; letter-spacing: 0.04em; border-top: 0.25mm solid var(--line); padding-top: 3mm; }
+.pf .no { color: var(--ink); font-weight: 800; }
+.pf .sec { letter-spacing: 0.02em; }
+
+.kicker { display: flex; align-items: center; gap: 3mm; font: 700 8pt var(--f); letter-spacing: 0.03em; text-transform: uppercase; color: var(--red); margin-bottom: 4mm; }
+.kicker .num { font: 800 7.5pt var(--f); color: #fff; background: var(--red); border-radius: 1mm; padding: 0.6mm 1.8mm; letter-spacing: 0.04em; }
+.kicker::after { content: ''; flex: 1; height: 0.25mm; background: var(--line); }
+h2 { font: 700 22pt/1.2 var(--f); letter-spacing: -0.015em; margin-bottom: 3mm; }
+h2 em { font-style: normal; color: var(--red); }
+.lead { font-size: 11pt; line-height: 1.65; color: var(--ink-2); margin-bottom: 6mm; max-width: 165mm; }
+h3 { font: 700 12.5pt/1.3 var(--f); margin-bottom: 2mm; }
+h4 { font: 700 10pt/1.35 var(--f); margin-bottom: 1.5mm; }
+.muted { color: var(--muted); }
+.small { font-size: 8.4pt; line-height: 1.6; }
+.mt { margin-top: 6mm; }
+.url { font: 600 8.4pt var(--f); color: var(--blue); }
+.code { display: inline-block; font: 800 7.6pt/1 var(--f); letter-spacing: 0.04em; background: var(--ink); color: #fff; border-radius: 1mm; padding: 1.1mm 1.8mm; vertical-align: 1px; white-space: nowrap; }
+.code.red { background: var(--red); }
+.kbd { display: inline-block; font: 700 7.8pt/1 var(--f); border: 0.3mm solid #c9c7c1; border-bottom-width: 0.7mm; border-radius: 1mm; padding: 0.9mm 1.6mm; background: #fff; vertical-align: 1px; }
+
+/* ---------- frames ---------- */
+.browser { border-radius: 2.2mm; overflow: hidden; background: #fff; box-shadow: 0 0 0 0.25mm rgba(0,0,0,0.09), 0 2mm 6mm rgba(20,20,30,0.10); }
+.browser .bar { height: 6mm; background: #efeeea; display: flex; align-items: center; gap: 1.3mm; padding: 0 2.6mm; }
+.browser .bar i { width: 1.9mm; height: 1.9mm; border-radius: 50%; background: #d7d5cf; }
+.browser .bar i:nth-child(1) { background: #ff6159; } .browser .bar i:nth-child(2) { background: #ffbd2e; } .browser .bar i:nth-child(3) { background: #28c941; }
+.browser .bar span { margin-left: 3mm; flex: 1; max-width: 70%; height: 3.8mm; border-radius: 1.9mm; background: #fff; font: 600 5.6pt/3.8mm var(--f); color: #8b8b92; padding: 0 2.5mm; white-space: nowrap; overflow: hidden; }
+.shot { position: relative; }
+.shot img { display: block; width: 100%; }
+.phone { width: 100%; border-radius: 7mm; padding: 2mm; background: #111214; box-shadow: 0 2.5mm 7mm rgba(0,0,0,0.18); }
+.phone .screen { border-radius: 5mm; overflow: hidden; position: relative; }
+.phone .screen img { display: block; width: 100%; }
+.phone .screen::before { content: ''; position: absolute; top: 1.6mm; left: 50%; width: 15mm; height: 3.6mm; margin-left: -7.5mm; border-radius: 2mm; background: #111214; z-index: 2; }
+.cap { font-size: 7.8pt; color: var(--muted); margin-top: 2.2mm; line-height: 1.5; }
+.cap b { color: var(--ink); }
+
+/* annotation markers */
+.mk { position: absolute; width: 6.2mm; height: 6.2mm; margin: -3.1mm 0 0 -3.1mm; border-radius: 50%; background: var(--red); color: #fff; font: 800 8pt/6.2mm var(--f); text-align: center; box-shadow: 0 0 0 0.7mm #fff, 0 0.6mm 2mm rgba(0,0,0,0.35); z-index: 3; }
+.ring { position: absolute; border: 0.6mm solid var(--red); border-radius: 1.3mm; z-index: 2; }
+.legend { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4mm 7mm; }
+.legend li { display: flex; gap: 2.6mm; align-items: flex-start; font-size: 8.8pt; line-height: 1.5; }
+.legend .n { flex: none; width: 5.2mm; height: 5.2mm; border-radius: 50%; background: var(--red); color: #fff; font: 800 7.3pt/5.2mm var(--f); text-align: center; margin-top: 0.3mm; }
+
+/* ---------- blocks ---------- */
+.card { border-radius: 3mm; padding: 5mm 5.5mm; background: var(--soft); }
+.card.green { background: var(--green-soft); } .card.amber { background: var(--amber-soft); } .card.blue { background: var(--blue-soft); } .card.red { background: var(--red-soft); }
+.card.line { background: #fff; border: 0.3mm solid var(--line); }
+.card .ic { width: 8mm; height: 8mm; border-radius: 2mm; display: grid; place-items: center; font: 800 11pt var(--f); color: #fff; margin-bottom: 3mm; }
+.card.green .ic { background: var(--green); } .card.amber .ic { background: var(--amber); } .card.blue .ic { background: var(--blue); } .card.red .ic { background: var(--red); }
+.card p + p { margin-top: 1.5mm; }
+.dots li { position: relative; padding-left: 4.2mm; margin-bottom: 1.4mm; }
+.dots li::before { content: ''; position: absolute; left: 0; top: 2.1mm; width: 1.6mm; height: 1.6mm; border-radius: 50%; background: currentColor; opacity: 0.45; }
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+.g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4.5mm; }
+.split { display: grid; grid-template-columns: 1fr 62mm; gap: 9mm; align-items: start; }
+
+.steps li { display: grid; grid-template-columns: 9mm 1fr; gap: 3mm; align-items: start; margin-bottom: 3.6mm; }
+.steps .s { width: 9mm; height: 9mm; border-radius: 50%; border: 0.5mm solid var(--red); color: var(--red); font: 800 10pt/8mm var(--f); text-align: center; }
+.steps b { display: block; font-size: 10pt; margin-bottom: 0.3mm; }
+.steps p { color: var(--ink-2); }
+
+.check li { position: relative; padding-left: 7.5mm; margin-bottom: 2.2mm; }
+.check li::before { content: ''; position: absolute; left: 0; top: 0.9mm; width: 4mm; height: 4mm; border-radius: 1mm; border: 0.4mm solid #b5b3ad; }
+
+table { width: 100%; border-collapse: collapse; font-size: 8.4pt; line-height: 1.5; }
+th { text-align: left; font: 700 8pt var(--f); letter-spacing: 0; color: var(--muted); padding: 2.2mm 2.4mm; border-bottom: 0.4mm solid var(--ink); }
+td { padding: 2.3mm 2.4mm; border-bottom: 0.25mm solid var(--line); vertical-align: top; }
+
+/* ---------- cover ---------- */
+.cover { background: #141416; color: #fff; padding: 0; }
+.cover .art { position: absolute; top: -18mm; right: -46mm; width: 190mm; display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; transform: rotate(-9deg); }
+.cover .art div { border-radius: 2mm; overflow: hidden; box-shadow: 0 3mm 9mm rgba(0,0,0,0.5); }
+.cover .art img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+.cover .fade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,20,22,0) 18%, rgba(20,20,22,0.88) 44%, #141416 58%); }
+.cover .content { position: absolute; left: 17mm; right: 17mm; bottom: 16mm; top: 0; display: flex; flex-direction: column; justify-content: flex-end; }
+.cover .brand { position: absolute; top: 15mm; left: 17mm; font: 800 8.5pt var(--f); letter-spacing: 0.32em; background: var(--red); padding: 2mm 3.5mm; border-radius: 1mm; }
+.cover .eyebrow { font: 700 9pt var(--f); letter-spacing: 0.06em; color: #ff7a8c; text-transform: uppercase; margin-bottom: 5mm; }
+.cover h1 { font: 700 38pt/1.12 var(--f); letter-spacing: -0.02em; }
+.cover h1 span { color: #ff5f75; }
+.cover .sub { font-size: 11.5pt; line-height: 1.65; color: #c9c9cf; margin: 6mm 0 10mm; max-width: 150mm; }
+.cover .stats { display: flex; gap: 10mm; padding: 6mm 0; border-top: 0.3mm solid #34343a; border-bottom: 0.3mm solid #34343a; margin-bottom: 9mm; }
+.cover .stats div { font: 400 8.5pt/1.4 var(--f); color: #a9a9b0; }
+.cover .stats b { display: block; font: 800 20pt/1.1 var(--f); color: #fff; margin-bottom: 1mm; }
+.cover .foot { display: flex; align-items: center; gap: 7mm; }
+.qrbox { background: #fff; border-radius: 2.5mm; padding: 2.5mm; flex: none; }
+.qrbox svg { width: 27mm; height: 27mm; display: block; }
+.cover .foot .t b { display: block; font-size: 11pt; margin-bottom: 1mm; }
+.cover .foot .t .u { font: 700 10pt var(--f); color: #ff7a8c; }
+.cover .foot .t .d { font-size: 8pt; color: #8f8f96; margin-top: 1.2mm; }
+
+/* ---------- contents ---------- */
+.toc { display: grid; grid-template-columns: 1fr 1fr; gap: 0 9mm; }
+.toc li { display: flex; align-items: baseline; gap: 3mm; padding: 3.4mm 0; border-bottom: 0.25mm solid var(--line); font-size: 9.6pt; }
+.toc .n { font: 800 9pt var(--f); color: var(--red); width: 6mm; }
+.toc .p { margin-left: auto; font: 700 8.5pt var(--f); color: var(--muted); }
+
+/* ---------- index of 12 ---------- */
+.idx { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm 4.5mm; }
+.idx .t { border-radius: 1.6mm; overflow: hidden; box-shadow: 0 0 0 0.25mm rgba(0,0,0,0.1); position: relative; }
+.idx .t img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+.idx .t .code { position: absolute; top: 2mm; left: 2mm; }
+.idx .nm { font: 700 8.8pt/1.3 var(--f); margin-top: 1.8mm; }
+.idx .st { font-size: 7.4pt; color: var(--muted); }
+.idx .feat .t { box-shadow: 0 0 0 0.6mm var(--red); }
+.idx.two { grid-template-columns: 1fr 1fr; gap: 6mm; }
+.idx.two .nm { font-size: 10.5pt; } .idx.two .st { font-size: 8.4pt; }
+.idx.five { grid-template-columns: repeat(5, 1fr); gap: 3.5mm; }
+.idx.five .t img { aspect-ratio: 4 / 3; }
+.idx.five .t .code { top: 1.4mm; left: 1.4mm; font-size: 6.8pt; padding: 0.9mm 1.4mm; }
+.idx.five .nm { font-size: 8.4pt; } .idx.five .st { font-size: 7.4pt; line-height: 1.4; }
+.idx.five .t img { aspect-ratio: 3 / 2.6; }
+.grp { display: flex; align-items: center; gap: 3mm; font: 700 8pt var(--f); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 9mm 0 3.5mm; }
+.grp::after { content: ''; flex: 1; height: 0.25mm; background: var(--line); }
+
+/* ---------- design sheets ---------- */
+.dz { display: grid; grid-template-columns: 86mm 1fr; gap: 3mm 7mm; padding-bottom: 7mm; margin-bottom: 7mm; border-bottom: 0.3mm solid var(--line); }
+.dz:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+.dz .browser img { aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+.dz .top { display: flex; align-items: center; gap: 2.5mm; margin-bottom: 2mm; }
+.dz .set { font: 700 7pt var(--f); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.dz h3 { font-size: 16pt; letter-spacing: -0.01em; margin-bottom: 1.2mm; }
+.dz .tagline { font-size: 9.2pt; color: var(--ink-2); line-height: 1.55; margin-bottom: 3mm; }
+.pal { display: flex; gap: 1.6mm; align-items: center; margin-bottom: 3mm; }
+.pal i { width: 6mm; height: 6mm; border-radius: 50%; box-shadow: inset 0 0 0 0.25mm rgba(0,0,0,0.15); }
+.pal span { font: 600 7.4pt var(--f); letter-spacing: 0; color: var(--muted); margin-left: 1.5mm; }
+.for { font-size: 8.8pt; line-height: 1.5; }
+.for b { font: 700 7.6pt var(--f); letter-spacing: 0; color: var(--muted); display: block; margin-bottom: 0.4mm; }
+.dz .cols { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr 0.8fr; gap: 4mm; }
+.pill { border-radius: 2mm; padding: 3mm 3.6mm; font-size: 8.5pt; line-height: 1.55; }
+.pill b { display: flex; align-items: center; gap: 1.6mm; font: 700 8pt var(--f); letter-spacing: 0; margin-bottom: 1mm; }
+.pill.pro { background: var(--green-soft); } .pill.pro b { color: var(--green); }
+.pill.con { background: var(--amber-soft); } .pill.con b { color: var(--amber); }
+.pill.use { background: var(--soft); } .pill.use b { color: var(--ink-2); }
+.try { grid-column: 1 / -1; display: flex; gap: 3mm; align-items: flex-start; font-size: 8.6pt; line-height: 1.55; }
+.try > b { flex: none; font: 700 7.8pt/1 var(--f); letter-spacing: 0; color: #fff; background: var(--red); border-radius: 1mm; padding: 1.3mm 2mm; margin-top: 0.3mm; }
+
+/* featured */
+.fe .browser img { aspect-ratio: 16 / 9; object-fit: cover; object-position: top; }
+.fe .head { display: flex; align-items: flex-end; gap: 5mm; margin: 6mm 0 4mm; }
+.fe .head h3 { font-size: 20pt; margin: 0; }
+.fe .head .tags { margin-left: auto; display: flex; gap: 1.5mm; }
+.tg { font: 600 7.4pt var(--f); border: 0.3mm solid var(--line); border-radius: 5mm; padding: 1mm 2.6mm; color: var(--ink-2); white-space: nowrap; }
+.hl { display: grid; grid-template-columns: 1fr 1fr; gap: 2.8mm 6mm; margin: 4mm 0 5mm; }
+.hl li { display: grid; grid-template-columns: 6mm 1fr; gap: 2mm; font-size: 8.8pt; line-height: 1.5; }
+.hl .n { font: 800 8pt var(--f); color: var(--red); border-top: 0.5mm solid var(--red); padding-top: 0.6mm; }
+.chips { display: flex; flex-wrap: wrap; gap: 1.6mm; }
+.chips span { font: 700 7.6pt var(--f); background: var(--red-soft); color: var(--red-2); border-radius: 5mm; padding: 1.2mm 3mm; }
+
+/* map */
+.map { position: relative; height: 108mm; border-radius: 3mm; background:
+  linear-gradient(var(--line), var(--line)) 50% 0 / 0.3mm 100% no-repeat,
+  linear-gradient(var(--line), var(--line)) 0 50% / 100% 0.3mm no-repeat, var(--paper); margin: 7mm 0 0; }
+.map .q { position: absolute; font: 600 7.6pt var(--f); letter-spacing: 0; color: #b3b1ab; }
+.map .ax { position: absolute; font: 700 7.6pt var(--f); color: var(--ink-2); white-space: nowrap; }
+.map .pt { position: absolute; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 1mm; white-space: nowrap; }
+.map .pt i { width: 3mm; height: 3mm; border-radius: 50%; background: var(--ink); box-shadow: 0 0 0 0.6mm #fff; }
+.map .pt.a i { background: #3d63dd; } .map .pt.b i { background: #e07a00; } .map .pt.e i { background: var(--red); width: 3.8mm; height: 3.8mm; }
+.map .pt span { font: 800 7.2pt var(--f); }
+.key { display: flex; gap: 6mm; font-size: 8pt; color: var(--ink-2); margin-top: 7mm; }
+.key i { display: inline-block; width: 2.6mm; height: 2.6mm; border-radius: 50%; margin-right: 1.4mm; vertical-align: -0.2mm; }
+
+/* score */
+.score td { padding: 2.3mm 2mm; vertical-align: middle; }
+.score .c { white-space: nowrap; text-align: center; }
+.score .c i { display: inline-block; width: 4.6mm; height: 4.6mm; border-radius: 50%; border: 0.3mm solid #c7c5bf; margin: 0 0.45mm; font: 600 5.6pt/4.1mm var(--f); text-align: center; color: #b0aea8; font-style: normal; }
+.score th { text-align: center; } .score th:first-child { text-align: left; }
+.rank { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+.rank div { border: 0.3mm solid var(--line); border-radius: 2.5mm; padding: 3.5mm 4mm; height: 30mm; }
+.rank b { font: 800 16pt var(--f); color: var(--red); }
+.rank span { font-size: 7.6pt; color: var(--muted); display: block; margin-top: 1mm; }
+
+/* back cover */
+.back { background: #141416; color: #fff; padding: 22mm 17mm; }
+.back h2 { font-size: 28pt; color: #fff; }
+.back .lead { color: #c9c9cf; }
+.back .steps .s { border-color: #ff5f75; color: #ff5f75; }
+.back .steps p { color: #b8b8be; }
+.back .wall { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2.5mm; margin-top: 10mm; }
+.back .wall div { position: relative; border-radius: 1.4mm; overflow: hidden; }
+.back .wall img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: top; opacity: 0.88; }
+.back .wall .code { position: absolute; left: 1.2mm; bottom: 1.2mm; font-size: 6.4pt; padding: 0.8mm 1.3mm; }
+.back .foot { margin-top: auto; display: flex; align-items: center; gap: 7mm; border-top: 0.3mm solid #34343a; padding-top: 8mm; }
+.back .foot .u { font: 700 11pt var(--f); color: #ff7a8c; }
+</style>
+</head>
+<body>
+
+<!-- ======================================================= COVER -->
+<section class="pg cover" data-sec="cover">
+  <div class="art">
+    <div><img src="../../library/GAMBOL-Design-Library/previews/everyday-b.jpg"></div>
+    <div><img src="../../library/GAMBOL-Design-Library/previews/set-a-02.jpg"></div>
+    <div><img src="../../library/GAMBOL-Design-Library/previews/set-b-03.jpg"></div>
+    <div><img src="../../library/GAMBOL-Design-Library/previews/everyday-a.jpg"></div>
+    <div><img src="../../library/GAMBOL-Design-Library/previews/set-a-04.jpg"></div>
+    <div><img src="../../library/GAMBOL-Design-Library/previews/set-b-05.jpg"></div>
+    <div><img src="../../library/GAMBOL-Design-Library/previews/set-a-01.jpg"></div>
+    <div><img src="../../library/GAMBOL-Design-Library/previews/set-b-02.jpg"></div>
+  </div>
+  <div class="fade"></div>
+  <div class="brand">GAMBOL</div>
+  <div class="content">
+    <div class="eyebrow">Design Library · คู่มือสำหรับผู้ชม</div>
+    <h1>คู่มือการดูและเลือก<br>แบบเว็บไซต์ <span>GAMBOL</span></h1>
+    <p class="sub">อธิบายทีละขั้น ตั้งแต่เปิดลิงก์ ดูทั้ง 12 แบบ ลองใช้งานแบบลูกค้า ไปจนถึงให้คะแนนและเลือกแบบที่ใช่ อ่านเข้าใจได้แม้ไม่เคยดูงานออกแบบเว็บไซต์มาก่อน</p>
+    <div class="stats">
+      <div><b>12</b>แบบเว็บไซต์<br>ที่คลิกใช้งานได้จริง</div>
+      <div><b>2</b>แบบแนะนำ ★<br>อ้างอิง REEF × GAMBOL</div>
+      <div><b>2</b>ชุดแนวคิด<br>ชุดละ 5 แบบ</div>
+      <div><b>~30</b>นาที<br>ดูครบทุกแบบ</div>
+    </div>
+    <div class="foot">
+      <div class="qrbox" id="qr1"></div>
+      <div class="t">
+        <b>สแกน QR หรือเปิดลิงก์</b>
+        <div class="u">bonvsbon.github.io/ui_design</div>
+        <div class="d">ใช้ได้ทั้งคอมพิวเตอร์ แท็บเล็ต และมือถือ · ฉบับวันที่ 6 ตุลาคม 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= CONTENTS + QUICK START -->
+<section class="pg" data-sec="เริ่มต้น">
+  <div class="inner">
+    <div class="kicker">สารบัญ</div>
+    <h2>ในคู่มือนี้</h2>
+    <ul class="toc">
+      <li><span class="n">01</span>เริ่มต้นใน 1 นาที<span class="p" data-toc="s1"></span></li>
+      <li><span class="n">07</span>ลูกเล่นเด่นที่ควรลอง<span class="p" data-toc="s7"></span></li>
+      <li><span class="n">02</span>ทั้ง 12 แบบในหน้าเดียว<span class="p" data-toc="s2"></span></li>
+      <li><span class="n">08</span>รายละเอียดทีละแบบ<span class="p" data-toc="s8"></span></li>
+      <li><span class="n">03</span>ข้อควรรู้ก่อนเริ่ม<span class="p" data-toc="s3"></span></li>
+      <li><span class="n">09</span>ตารางเปรียบเทียบ<span class="p" data-toc="s9"></span></li>
+      <li><span class="n">04</span>หน้าแรก: Design Library<span class="p" data-toc="s4"></span></li>
+      <li><span class="n">10</span>ช่วยตัดสินใจ<span class="p" data-toc="s10"></span></li>
+      <li><span class="n">05</span>เปิดดู สลับแบบ ดูบนมือถือ<span class="p" data-toc="s5"></span></li>
+      <li><span class="n">11</span>ใบให้คะแนน<span class="p" data-toc="s11"></span></li>
+      <li><span class="n">06</span>ลองซื้อรองเท้า 1 คู่<span class="p" data-toc="s6"></span></li>
+      <li><span class="n">12</span>ส่งความเห็น และคำถามที่พบบ่อย<span class="p" data-toc="s12"></span></li>
+    </ul>
+
+    <div class="kicker mt" id="s1"><span class="num">01</span>เริ่มต้นใน 1 นาที</div>
+    <div class="split">
+      <ul class="steps">
+        <li><span class="s">1</span><div><b>เปิดลิงก์</b><p><span class="url">bonvsbon.github.io/ui_design</span> หรือสแกน QR ที่หน้าปก</p></div></li>
+        <li><span class="s">2</span><div><b>ดูการ์ด</b><p>การ์ด 1 ใบ คือเว็บไซต์ 1 แบบ มีทั้งหมด 12 แบบ</p></div></li>
+        <li><span class="s">3</span><div><b>กดปุ่ม Preview</b><p>เปิดเว็บแบบนั้น แล้วคลิกเล่นได้เหมือนเว็บจริง</p></div></li>
+        <li><span class="s">4</span><div><b>กดย้อนกลับ ← ของเบราว์เซอร์</b><p>กลับมาหน้ารวม แล้วเปิดแบบถัดไป</p></div></li>
+        <li><span class="s">5</span><div><b>ให้คะแนน แล้วส่งความเห็น</b><p>ใช้ใบให้คะแนนในหัวข้อ 11 และวิธีส่งความเห็นในหัวข้อ 12</p></div></li>
+      </ul>
+      <div class="card blue">
+        <div class="ic">⏱</div>
+        <h4>ใช้เวลาประมาณ 20–30 นาที</h4>
+        <p class="small">ดูคร่าวๆ ครบทุกแบบ ถ้าลองค้นหา เลือกสินค้า และใส่ตะกร้าจริงจัง ใช้แบบละประมาณ 5 นาที</p>
+        <p class="small"><b>แนะนำ:</b> ดูบนคอมพิวเตอร์ก่อน แล้วเปิดซ้ำบนมือถือเฉพาะแบบที่ชอบ</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= ALL 12 -->
+<section class="pg" data-sec="ทั้ง 12 แบบ">
+  <div class="inner">
+    <div class="kicker" id="s2"><span class="num">02</span>ทั้ง 12 แบบในหน้าเดียว</div>
+    <h2>รู้จัก<em>รหัสแบบ</em></h2>
+    <p class="lead" style="margin-bottom:0">ทุกแบบมีรหัสสั้นๆ ไว้อ้างอิงเวลาคุยกัน บอกรหัสแทนชื่อได้เลย เพราะบางแบบชื่อคล้ายกัน เช่น "Smart Commerce" มีทั้งใน Set A และ Set B</p>
+
+    <div class="grp">★ แบบแนะนำ · Featured</div>
+    <div class="idx two">
+      <div class="feat"><div class="t"><img src="../../library/GAMBOL-Design-Library/previews/everyday-a.jpg"><span class="code red">E-A</span></div><div class="nm">Everyday Feels Better · A</div><div class="st">อบอุ่น ไลฟ์สไตล์ ภาษาไทย</div></div>
+      <div class="feat"><div class="t"><img src="../../library/GAMBOL-Design-Library/previews/everyday-b.jpg"><span class="code red">E-B</span></div><div class="nm">Everyday Feels Better · B</div><div class="st">ชายทะเล สดใส เน้นการขาย</div></div>
+    </div>
+    <div class="grp">Concept Set A</div>
+    <div class="idx five">
+      <div><div class="t"><img src="../../library/GAMBOL-Design-Library/previews/set-a-01.jpg"><span class="code">A-01</span></div><div class="nm">Premium Street</div><div class="st">ขาวดำ แบบนิตยสาร</div></div>
+      <div><div class="t"><img src="../../library/GAMBOL-Design-Library/previews/set-a-02.jpg"><span class="code">A-02</span></div><div class="nm">Bold Sport</div><div class="st">โปสเตอร์ สีจัด สายกีฬา</div></div>
+      <div><div class="t"><img src="../../library/GAMBOL-Design-Library/previews/set-a-03.jpg"><span class="code">A-03</span></div><div class="nm">Lifestyle Storytelling</div><div class="st">อบอุ่น เล่าเรื่องชีวิตจริง</div></div>
+      <div><div class="t"><img src="../../library/GAMBOL-Design-Library/previews/set-a-04.jpg"><span class="code">A-04</span></div><div class="nm">Smart Commerce</div><div class="st">ช่วยเลือก ซื้อง่าย</div></div>
+      <div><div class="t"><img src="../../library/GAMBOL-Design-Library/previews/set-a-05.jpg"><span class="code">A-05</span></div><div class="nm">Future Tech</div><div class="st">ห้องแล็บ เทคโนโลยี</div></div>
+    </div>
+    <div class="grp">Concept Set B</div>
+    <div class="idx five">
+      <div><div class="t"><img src="../../library/GAMBOL-Design-Library/previews/set-b-01.jpg"><span class="code">B-01</span></div><div class="nm">Modern Minimal</div><div class="st">โล่ง สะอาด เน้นสินค้า</div></div>
+      <div><div class="t"><img src="../../library/GAMBOL-Design-Library/previews/set-b-02.jpg"><span class="code">B-02</span></div><div class="nm">Bold Sport</div><div class="st">สปอร์ต ส้ม–ดำ</div></div>
+      <div><div class="t"><img src="../../library/GAMBOL-Design-Library/previews/set-b-03.jpg"><span class="code">B-03</span></div><div class="nm">Lifestyle Editorial</div><div class="st">วารสาร เล่าผ่านผู้คน</div></div>
+      <div><div class="t"><img src="../../library/GAMBOL-Design-Library/previews/set-b-04.jpg"><span class="code">B-04</span></div><div class="nm">Smart Commerce</div><div class="st">ค้นหาเด่น หาคู่เร็ว</div></div>
+      <div><div class="t"><img src="../../library/GAMBOL-Design-Library/previews/set-b-05.jpg"><span class="code">B-05</span></div><div class="nm">Future Footwear</div><div class="st">เวทีมืด สื่อนวัตกรรม</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= GOOD TO KNOW -->
+<section class="pg" data-sec="ข้อควรรู้">
+  <div class="inner">
+    <div class="kicker" id="s3"><span class="num">03</span>ข้อควรรู้ก่อนเริ่ม</div>
+    <h2>นี่คือ <em>แบบร่าง</em> ไม่ใช่เว็บไซต์จริง</h2>
+    <p class="lead">ทุกแบบสร้างขึ้นเพื่อให้เห็นหน้าตาและลองวิธีใช้งานก่อนตัดสินใจ ยังไม่ได้เชื่อมกับระบบหลังร้านใดๆ</p>
+    <div class="g3">
+      <div class="card green">
+        <div class="ic">✓</div>
+        <h4>ลองได้ทุกอย่าง ไม่มีผลจริง</h4>
+        <ul class="dots small">
+          <li>กดใส่ตะกร้า กดซื้อ สมัครรับข่าวสารได้ตามสบาย</li>
+          <li><b>ไม่มีการตัดเงิน ไม่ส่งอีเมล ไม่สั่งของจริง</b></li>
+          <li>ตะกร้าจำไว้แค่ในเครื่องคุณ</li>
+          <li>ไม่ต้องสมัครหรือเข้าสู่ระบบ</li>
+        </ul>
+      </div>
+      <div class="card amber">
+        <div class="ic">!</div>
+        <h4>ข้อมูลในเว็บเป็นข้อมูลสมมติ</h4>
+        <ul class="dots small">
+          <li>ชื่อสินค้า ราคา โปรโมชั่น ไซซ์ และสาขา ใส่ไว้ให้เห็นภาพ</li>
+          <li>รูปบางส่วนเป็นภาพประกอบชั่วคราว</li>
+          <li>ตัวเลขเทคโนโลยีและรีวิวยังไม่ใช่ผลทดสอบจริง</li>
+        </ul>
+      </div>
+      <div class="card blue">
+        <div class="ic">⏱</div>
+        <h4>ครั้งแรกโหลด 2–5 วินาที</h4>
+        <ul class="dots small">
+          <li>แต่ละแบบเก็บรูปและข้อมูลไว้ในไฟล์เดียว</li>
+          <li>ถ้าหน้ายังขาวอยู่ ให้รอสักครู่</li>
+          <li>หลังโหลดเสร็จ กดไปหน้าอื่นได้ทันที</li>
+          <li>บนมือถือแนะนำให้ใช้ Wi-Fi</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card red mt" style="display:flex;gap:5mm;align-items:center">
+      <div class="ic" style="margin:0;flex:none">★</div>
+      <p><b>เวลาให้ความเห็น ให้ดูที่ "หน้าตา" และ "ความง่ายในการใช้งาน" เป็นหลัก</b> ไม่ต้องกังวลเรื่องข้อมูลที่ไม่ตรงกับของจริง ข้อมูลเหล่านี้จะเปลี่ยนเป็นของจริงตอนทำเว็บไซต์</p>
+    </div>
+
+    <h3 class="mt">อุปกรณ์ที่ใช้ได้</h3>
+    <table>
+      <tr><th style="width:42mm">อุปกรณ์</th><th style="width:58mm">เบราว์เซอร์</th><th>หมายเหตุ</th></tr>
+      <tr><td><b>คอมพิวเตอร์</b> · แนะนำ</td><td>Chrome · Safari · Edge · Firefox</td><td>เห็นรายละเอียดครบที่สุด</td></tr>
+      <tr><td><b>มือถือ / แท็บเล็ต</b></td><td>Safari (iPhone) · Chrome (Android)</td><td>หน้าเว็บปรับขนาดเอง บางแบบมีแถบเมนูด้านล่าง</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ======================================================= LIBRARY -->
+<section class="pg" data-sec="Design Library">
+  <div class="inner">
+    <div class="kicker" id="s4"><span class="num">04</span>หน้าแรก: Design Library</div>
+    <h2>หน้ารวม<em>แบบทั้งหมด</em></h2>
+    <p class="lead">เปิดลิงก์แล้วจะเจอหน้านี้ก่อน ด้านบนสุดคือ <b>★ Featured</b> 2 แบบที่แนะนำ เพราะออกแบบโดยอ้างอิงเว็บไซต์ <b>REEF</b> (แบรนด์รองเท้าแตะระดับโลก) ร่วมกับข้อมูลจริงของ GAMBOL</p>
+    <div class="browser"><div class="bar"><i></i><i></i><i></i><span>bonvsbon.github.io/ui_design/</span></div>
+      <div class="shot" data-ann="library-top"><img src="shots/library-top.jpg"></div></div>
+    <ul class="legend" style="margin-top:5mm">
+      <li><span class="n">1</span><span><b>ป้ายแจ้ง</b> ว่าเป็นแบบร่าง ไม่ใช่เว็บไซต์ทางการ</span></li>
+      <li><span class="n">2</span><span><b>★ Featured</b> ป้ายบอกว่าเป็นแบบแนะนำ</span></li>
+      <li><span class="n">3</span><span><b>แท็ก</b> คำสั้นๆ บอกบุคลิกของแบบ</span></li>
+      <li><span class="n">4</span><span><b>จุดเด่น</b> 5 ข้อของแบบนี้</span></li>
+      <li><span class="n">5</span><span><b>ทางลัด</b> กดเข้าหน้าย่อยได้ตรงๆ เช่น หน้าสินค้า ค้นหาร้าน</span></li>
+      <li><span class="n">6</span><span><b>Preview</b> เปิดหน้าแรกของแบบนี้</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="pg" data-sec="Design Library">
+  <div class="inner">
+    <div class="kicker"><span class="num">04</span>หน้าแรก: Design Library</div>
+    <h2>Concept Set A และ Set B</h2>
+    <p class="lead">เลื่อนลงมาจะเจออีก 10 แบบ แบ่งเป็น 2 ชุด ชุดละ 5 แนวคิด ทั้ง 2 ชุดตีโจทย์เดียวกัน คือ <b>พรีเมียม · สปอร์ต · ไลฟ์สไตล์ · เน้นขาย · เทคโนโลยี</b> แต่ออกแบบคนละทีม หน้าตาจึงต่างกัน ลองเทียบดูว่าชอบการตีความแบบไหนมากกว่า</p>
+    <div class="browser"><div class="bar"><i></i><i></i><i></i><span>bonvsbon.github.io/ui_design/</span></div>
+      <div class="shot" data-ann="library-sets"><img src="shots/library-sets.jpg"></div></div>
+    <div class="split mt" style="grid-template-columns:1fr 44mm;gap:12mm">
+      <div>
+        <ul class="legend" style="grid-template-columns:1fr">
+          <li><span class="n">1</span><span><b>ชื่อชุด</b> Concept Set A หรือ Set B</span></li>
+          <li><span class="n">2</span><span><b>เลขแนวคิด</b> 01–05 ใช้คู่กับชื่อชุดเป็นรหัส เช่น A-04</span></li>
+          <li><span class="n">3</span><span><b>ชื่อแบบ</b></span></li>
+          <li><span class="n">4</span><span><b>แท็ก</b> บอกบุคลิก</span></li>
+          <li><span class="n">5</span><span><b>Preview</b> เปิดดูแบบนี้</span></li>
+        </ul>
+        <div class="card line mt">
+          <h4>บนมือถือ</h4>
+          <p class="small">การ์ดเรียงลงมาทีละใบ เลื่อนดูได้ด้วยนิ้วเดียว ปุ่ม Preview ใหญ่ กดง่าย</p>
+        </div>
+      </div>
+      <div><div class="phone"><div class="screen"><img src="shots/library-mobile.jpg" style="height:76mm;object-fit:cover;object-position:top"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= OPEN & SWITCH -->
+<section class="pg" data-sec="เปิดดูแบบ">
+  <div class="inner">
+    <div class="kicker" id="s5"><span class="num">05</span>เปิดดู สลับแบบ ดูบนมือถือ</div>
+    <h2>ดูทีละแบบ<em>อย่างไรไม่ให้หลง</em></h2>
+    <div class="split" style="margin-top:3mm">
+      <ul class="steps">
+        <li><span class="s">1</span><div><b>กด Preview บนการ์ด</b><p>ที่หน้า Design Library</p></div></li>
+        <li><span class="s">2</span><div><b>รอโหลด 2–5 วินาที</b><p>แล้วเลื่อนดูหน้าแรกจนสุด</p></div></li>
+        <li><span class="s">3</span><div><b>คลิกเล่นได้เหมือนเว็บจริง</b><p>เมนู รูปสินค้า ปุ่มต่างๆ</p></div></li>
+        <li><span class="s">4</span><div><b>กดย้อนกลับ ← ของเบราว์เซอร์</b><p>จนกลับมาหน้า Design Library หรือเปิดลิงก์หลักใหม่</p></div></li>
+      </ul>
+      <div class="card blue">
+        <div class="ic">↗</div>
+        <h4>เคล็ดลับ: เปิดเป็นแท็บใหม่</h4>
+        <p class="small">กด <span class="kbd">Ctrl</span> (Windows) หรือ <span class="kbd">⌘ Cmd</span> (Mac) ค้างไว้ แล้วคลิก Preview แบบนั้นจะเปิดในแท็บใหม่ สลับไปมาเพื่อเปรียบเทียบได้ง่าย</p>
+      </div>
+    </div>
+
+    <h3 class="mt">สลับแนวคิดภายในชุด A หรือ B</h3>
+    <p style="margin-bottom:4mm">แบบในชุด A และ B มีแถบให้สลับไปแนวคิดอื่นในชุดเดียวกันได้ทันที ไม่ต้องกลับไปหน้ารวม</p>
+    <div class="browser"><div class="bar"><i></i><i></i><i></i><span>Concept Set B</span></div><div class="shot"><img src="shots/switch-b.jpg"></div></div>
+    <p class="cap"><b>Concept Set B:</b> แถบสีเทาด้านบนสุด กดเลข 01–05 เพื่อสลับแนวคิด (ในแถบนี้ แนวคิด 03 ชื่อ "Lifestyle Stories" ซึ่งคือ B-03 Lifestyle Editorial)</p>
+    <div class="browser" style="margin-top:5mm"><div class="bar"><i></i><i></i><i></i><span>Concept Set A</span></div><div class="shot"><img src="shots/switch-a.jpg"></div></div>
+    <p class="cap"><b>Concept Set A:</b> ปุ่มลอยมุมซ้ายล่าง กด <b>"สลับแนวคิด"</b> เพื่อเปลี่ยนแบบ</p>
+    <div class="card amber mt" style="display:flex;gap:5mm;align-items:center">
+      <div class="ic" style="margin:0;flex:none">!</div>
+      <p class="small"><b>แถบสลับแนวคิด ปุ่ม CMS และ Studio เป็นเครื่องมือช่วยดูแบบร่างสำหรับทีมงาน</b> ไม่ใช่ส่วนของเว็บจริง เวลาประเมินให้มองข้ามไป</p>
+    </div>
+  </div>
+</section>
+
+<section class="pg" data-sec="ดูบนมือถือ">
+  <div class="inner">
+    <div class="kicker"><span class="num">05</span>เปิดดู สลับแบบ ดูบนมือถือ</div>
+    <h2>อย่าลืมลองบน<em>มือถือ</em></h2>
+    <p class="lead">ลูกค้าส่วนใหญ่ซื้อรองเท้าผ่านมือถือ แบบที่สวยบนจอคอมพิวเตอร์อาจใช้ยากบนจอเล็ก ควรลองแบบที่ชอบบนมือถือทุกครั้ง</p>
+    <div class="split" style="grid-template-columns:1fr 68mm;gap:12mm">
+      <div>
+        <ul class="steps">
+          <li><span class="s">1</span><div><b>สแกน QR ที่หน้าปก</b><p>ด้วยกล้องมือถือ</p></div></li>
+          <li><span class="s">2</span><div><b>กด Preview</b><p>บนแบบที่อยากดู</p></div></li>
+          <li><span class="s">3</span><div><b>ลองใช้ด้วยนิ้วโป้งข้างเดียว</b><p>แบบที่ลูกค้าใช้จริงระหว่างเดินทาง</p></div></li>
+        </ul>
+        <h4 class="mt">สิ่งที่ควรสังเกตบนมือถือ</h4>
+        <ul class="check" style="margin-top:2.5mm">
+          <li>เห็นหน้าแรกแล้ว รู้ไหมว่าขายอะไร ภายใน 3 วินาที</li>
+          <li>เลือกหมวด ผู้ชาย / ผู้หญิง / เด็ก ได้ง่ายไหม</li>
+          <li>มีแถบเมนูด้านล่างให้กดด้วยนิ้วโป้งไหม</li>
+          <li>ตัวหนังสืออ่านง่าย ราคามองเห็นชัดไหม</li>
+          <li>ปุ่มใส่ตะกร้าหาเจอง่ายไหม</li>
+        </ul>
+        <div class="card blue mt">
+          <h4>ดูมุมมองมือถือบนคอมพิวเตอร์</h4>
+          <p class="small">ย่อหน้าต่างเบราว์เซอร์ให้แคบลง หน้าเว็บจะเปลี่ยนเป็นมุมมองมือถือเอง</p>
+        </div>
+      </div>
+      <div>
+        <div class="phone"><div class="screen"><img src="shots/mobile-home.jpg"></div></div>
+        <p class="cap" style="text-align:center"><span class="code red">E-A</span> บนมือถือ มีแถบเมนูด้านล่าง<br>Home · Shop · Search · Wishlist · Cart</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= SHOPPING -->
+<section class="pg" data-sec="ลองซื้อ">
+  <div class="inner">
+    <div class="kicker" id="s6"><span class="num">06</span>ลองซื้อรองเท้า 1 คู่</div>
+    <h2>ทำตัวเป็น<em>ลูกค้า</em></h2>
+    <p class="lead">วิธีที่ดีที่สุดในการตัดสินใจ คือลองหาและซื้อรองเท้าสักคู่ ตัวอย่างนี้ใช้แบบ <span class="code red">E-B</span> ส่วนแบบอื่นทำได้คล้ายกัน</p>
+
+    <div class="g2" style="grid-template-columns:50mm 1fr;align-items:start">
+      <div><div class="kicker" style="margin-bottom:2mm">ขั้นที่ 1</div><h3>ค้นหา</h3><p class="small">กด <b>แว่นขยาย</b> มุมขวาบน พิมพ์ <b>slide</b> ผลลัพธ์ขึ้นทันทีระหว่างพิมพ์ ไม่ต้องกด Enter</p></div>
+      <div><div class="browser"><div class="bar"><i></i><i></i><i></i><span>E-B · Search</span></div><div class="shot"><img src="shots/search.jpg" style="height:60mm;object-fit:cover;object-position:top"></div></div></div>
+    </div>
+    <div class="g2 mt" style="grid-template-columns:50mm 1fr;align-items:start">
+      <div><div class="kicker" style="margin-bottom:2mm">ขั้นที่ 2</div><h3>ดูรายการและกรอง</h3><p class="small">กดเมนู <b>Men</b> หรือ <b>Women</b> แล้วลองกดปุ่มประเภท (Flip Flops / Slides) ติ๊กตัวกรองด้านซ้าย หรือเปลี่ยน <b>Sort by</b></p></div>
+      <div><div class="browser"><div class="bar"><i></i><i></i><i></i><span>E-B · Products</span></div><div class="shot"><img src="shots/listing.jpg"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pg" data-sec="ลองซื้อ">
+  <div class="inner">
+    <div class="kicker"><span class="num">06</span>ลองซื้อรองเท้า 1 คู่</div>
+    <h3>ขั้นที่ 3 · หน้าสินค้า: เลือกสีและไซซ์</h3>
+    <p class="small" style="margin-bottom:3mm">กดสินค้าชิ้นใดก็ได้ จะเข้าหน้ารายละเอียด กดรูปเล็กใต้รูปใหญ่เพื่อดูมุมอื่น ไซซ์ที่กดไม่ได้คือสินค้าหมด</p>
+    <div class="browser"><div class="bar"><i></i><i></i><i></i><span>E-B · Product</span></div><div class="shot" data-ann="product"><img src="shots/product.jpg" style="height:100mm;object-fit:cover;object-position:top"></div></div>
+    <ul class="legend" style="margin-top:4mm">
+      <li><span class="n">1</span><span><b>สี</b> กดวงกลมสี รูปจะเปลี่ยนตาม</span></li>
+      <li><span class="n">2</span><span><b>ไซซ์</b> ต้องเลือกก่อนจึงใส่ตะกร้าได้</span></li>
+      <li><span class="n">3</span><span><b>Size guide</b> ตารางเทียบไซซ์</span></li>
+      <li><span class="n">4</span><span><b>ADD TO BAG</b> ใส่ตะกร้า</span></li>
+    </ul>
+    <div class="g2 mt" style="grid-template-columns:50mm 1fr;align-items:start">
+      <div><h3>ขั้นที่ 4 · ตะกร้าสินค้า</h3><p class="small">ตะกร้าเลื่อนออกมาจากด้านขวา เพิ่ม/ลดจำนวน ลบสินค้า ดูยอดรวมได้ ปุ่มชำระเงินเป็น<b>ตัวอย่าง ไม่ตัดเงินจริง</b></p></div>
+      <div><div class="browser"><div class="bar"><i></i><i></i><i></i><span>E-B · Bag</span></div><div class="shot"><img src="shots/bag.jpg" style="height:52mm;object-fit:cover;object-position:top right"></div></div></div>
+    </div>
+    <div class="card green mt" style="display:flex;gap:5mm;align-items:center">
+      <div class="ic" style="margin:0;flex:none">→</div>
+      <p class="small"><b>ทำแบบเดียวกันกับแบบอื่น</b> แล้วเทียบว่าแบบไหน <b>หาสินค้าเจอเร็ว</b> และ <b>ซื้อได้ในจำนวนคลิกน้อยที่สุด</b> ข้อนี้ช่วยตัดสินใจได้มาก</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= FEATURES -->
+<section class="pg" data-sec="ลูกเล่นเด่น">
+  <div class="inner">
+    <div class="kicker" id="s7"><span class="num">07</span>ลูกเล่นเด่นที่ควรลอง</div>
+    <h2>สิ่งที่ทำให้แต่ละแบบ<em>ต่างกัน</em></h2>
+
+    <h3 style="margin-top:2mm">ตัวช่วยหาคู่ใน 3 คลิก <span class="code">A-04</span> <span class="code">B-04</span></h3>
+    <p class="small" style="margin-bottom:3mm">ลูกค้าตอบ 3 ข้อ <b>ซื้อให้ใคร → ใส่ทำอะไร → อะไรสำคัญที่สุด</b> แล้วเว็บแนะนำรองเท้าที่เหมาะให้ทันที เหมาะกับลูกค้าที่ไม่รู้จะเลือกอะไร</p>
+    <div class="g2" style="gap:5mm">
+      <div><div class="browser"><div class="bar"><i></i><i></i><i></i><span>A-04</span></div><div class="shot"><img src="shots/finder-a.jpg"></div></div><p class="cap"><b>A-04</b> "หาคู่ที่ใช่ใน 3 คลิก" ด้านขวาคือสินค้าแนะนำ</p></div>
+      <div><div class="browser"><div class="bar"><i></i><i></i><i></i><span>B-04</span></div><div class="shot"><img src="shots/finder-b.jpg"></div></div><p class="cap"><b>B-04</b> "Who are you shopping for?" ในหน้าแรก</p></div>
+    </div>
+
+    <h3 class="mt">GBOLD แบบกดดูได้ <span class="code red">E-A</span> <span class="code red">E-B</span> <span class="code">A-05</span> <span class="code">B-05</span></h3>
+    <p class="small" style="margin-bottom:3mm">แทนข้อความยาวๆ ลูกค้ากด <b>จุด +</b> บนพื้นรองเท้า เพื่อดูว่าแต่ละชั้นช่วยเรื่องอะไร: นุ่ม เบา ทน รองรับเท้า</p>
+    <div class="browser"><div class="bar"><i></i><i></i><i></i><span>E-A · GBOLD Technology</span></div><div class="shot"><img src="shots/technology.jpg" style="height:54mm;object-fit:cover;object-position:center 62%"></div></div>
+
+    <table class="mt">
+      <tr><th style="width:26mm">แบบ</th><th>ลูกเล่นอื่นที่น่าลอง</th></tr>
+      <tr><td><span class="code">A-02</span></td><td>กดค้างที่ปุ่มทดสอบความนุ่ม (squish test) เพื่อ "รู้สึก" ถึงพื้นรองเท้า</td></tr>
+      <tr><td><span class="code">A-03</span> <span class="code">B-03</span></td><td>กดแท็บช่วงเวลา เช่น ทำงาน / เที่ยว / วันหยุด แล้วกดจุดบนภาพเพื่อดูสินค้า</td></tr>
+      <tr><td><span class="code red">E-A</span> <span class="code red">E-B</span></td><td>หน้า <b>Stores</b> เลือกจังหวัดและอำเภอ เพื่อค้นหาร้าน (ข้อมูลร้านเป็นตัวอย่าง)</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ======================================================= FEATURED E-A -->
+<section class="pg fe" data-sec="แบบแนะนำ">
+  <div class="inner">
+    <div class="kicker" id="s8"><span class="num">08</span>รายละเอียดทีละแบบ · ★ แบบแนะนำ</div>
+    <div class="browser"><div class="bar"><i></i><i></i><i></i><span>bonvsbon.github.io/ui_design/featured/everyday-a/</span></div><div class="shot"><img src="../../library/GAMBOL-Design-Library/previews/everyday-a.jpg" style="aspect-ratio:16/10.6"></div></div>
+    <div class="head">
+      <div><span class="code red">E-A</span><h3 style="margin-top:2mm">Everyday Feels Better · A</h3></div>
+      <div class="tags"><span class="tg">REEF reference</span><span class="tg">Lifestyle</span><span class="tg">Thai-first</span></div>
+    </div>
+    <div class="g2" style="grid-template-columns:1fr 62mm;gap:8mm">
+      <div>
+        <p style="font-size:10pt;color:var(--ink-2);line-height:1.6">อบอุ่น เป็นกันเอง ข้อความภาษาไทยเป็นหลัก หัวข้อภาษาอังกฤษตัวใหญ่ เหมาะกับลูกค้าทั่วไปที่ซื้อผ่านมือถือ และชอบเลือกรองเท้าตามโอกาสใช้งาน</p>
+        <ul class="hl">
+          <li><span class="n">01</span><span>หน้าแรกมีปุ่ม SHOP MEN / SHOP WOMEN และ "Find your pair" 4 หมวด</span></li>
+          <li><span class="n">02</span><span>อธิบาย GBOLD แบบกดดูได้ ทั้งหน้าแรก หน้าสินค้า และหน้าเฉพาะ</span></li>
+          <li><span class="n">03</span><span>เลือกตามไลฟ์สไตล์: Everyday, Travel, City Walk, Weekend, Outdoor, Relax</span></li>
+          <li><span class="n">04</span><span>มือถือมีแถบเมนูด้านล่าง ปุ่มใส่ตะกร้าติดหน้าจอ</span></li>
+          <li><span class="n">05</span><span>ค้นหาร้านตามจังหวัดและอำเภอ หรือใช้ตำแหน่งปัจจุบัน</span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="pal"><i style="background:#F7F4EE"></i><i style="background:#17150F"></i><i style="background:#D42A1E"></i><i style="background:#0F3A39"></i><i style="background:#F3C443"></i><span>สีหลัก</span></div>
+        <div class="pill con" style="margin-bottom:3mm"><b>! ข้อควรระวัง</b>รูปไลฟ์สไตล์บางส่วนเป็นภาพประกอบชั่วคราว ต้องถ่ายภาพจริงเพิ่ม</div>
+        <div class="pill use"><b>หน้าที่มี</b><div class="chips" style="margin-top:1.5mm"><span>Home</span><span>Men</span><span>Product</span><span>GBOLD</span><span>Stories</span><span>Stores</span></div></div>
+      </div>
+    </div>
+    <div class="try"><b>ลองทำ</b><span>กดจุด + บนพื้นรองเท้าในหน้า GBOLD · ค้นหาคำว่า "slide" · เปิดบนมือถือแล้วใช้แถบเมนูล่าง</span></div>
+  </div>
+</section>
+
+<section class="pg fe" data-sec="แบบแนะนำ">
+  <div class="inner">
+    <div class="kicker"><span class="num">08</span>รายละเอียดทีละแบบ · ★ แบบแนะนำ</div>
+    <div class="browser"><div class="bar"><i></i><i></i><i></i><span>bonvsbon.github.io/ui_design/featured/everyday-b/</span></div><div class="shot"><img src="../../library/GAMBOL-Design-Library/previews/everyday-b.jpg" style="aspect-ratio:16/8"></div></div>
+    <div class="head">
+      <div><span class="code red">E-B</span><h3 style="margin-top:2mm">Everyday Feels Better · B</h3></div>
+      <div class="tags"><span class="tg">REEF reference</span><span class="tg">Coastal</span><span class="tg">Commerce</span></div>
+    </div>
+    <div class="g2" style="grid-template-columns:1fr 62mm;gap:8mm">
+      <div>
+        <p style="font-size:10pt;color:var(--ink-2);line-height:1.6">แคมเปญชายทะเลสดใส ตัวอักษรสไตล์ป้ายห้อยรองเท้า สีแดง GAMBOL บนพื้นขาว เหมาะเป็นร้านออนไลน์หลักที่ต้องการทั้งภาพลักษณ์และการซื้อที่ง่าย</p>
+        <ul class="hl">
+          <li><span class="n">01</span><span>เมนูใหญ่มีภาพประกอบ ใช้งานด้วยคีย์บอร์ดได้</span></li>
+          <li><span class="n">02</span><span>New for Men / New for Women สลับภาพกับสินค้า</span></li>
+          <li><span class="n">03</span><span>GBOLD: จุดกดบนคอมพิวเตอร์ เมนูพับบนมือถือ</span></li>
+          <li><span class="n">04</span><span>ตัวกรองครบ: เพศ สไตล์ ไซซ์ สี ราคา เทคโนโลยี แชร์ลิงก์ผลกรองได้</span></li>
+          <li><span class="n">05</span><span>หน้า Studio ให้ทีมงานแก้เนื้อหาหน้าแรกเองได้</span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="pal"><i style="background:oklch(0.52 0.21 26)"></i><i style="background:oklch(0.19 0.005 260)"></i><i style="background:#fff"></i><i style="background:oklch(0.965 0.002 260)"></i><i style="background:#1d5c6b"></i><span>สีหลัก</span></div>
+        <div class="pill con" style="margin-bottom:3mm"><b>! ข้อควรระวัง</b>ชื่อสินค้า ราคา และคอลเลกชันเป็นข้อมูลสมมติ</div>
+        <div class="pill use"><b>หน้าที่มี</b><div class="chips" style="margin-top:1.5mm"><span>Home</span><span>Products</span><span>Product</span><span>GBOLD</span><span>Stories</span><span>Stores</span><span>Studio</span></div></div>
+      </div>
+    </div>
+    <div class="try" style="margin-bottom:5mm"><b>ลองทำ</b><span>ทำตามหัวข้อ 06 ทั้งหมด · ลองตัวกรองในหน้า Products · ชี้เมาส์ที่เมนู Men เพื่อดูเมนูใหญ่</span></div>
+    <table>
+      <tr><th style="width:28mm">A กับ B ต่างกัน</th><th><span class="code red">E-A</span></th><th><span class="code red">E-B</span></th></tr>
+      <tr><td><b>อารมณ์</b></td><td>อบอุ่น ไลฟ์สไตล์ เป็นกันเอง</td><td>สดใส ชายทะเล คมชัด</td></tr>
+      <tr><td><b>ภาษา</b></td><td>ไทยเป็นหลัก</td><td>อังกฤษเป็นหลัก มีไทยประกอบ</td></tr>
+      <tr><td><b>เด่นเรื่อง</b></td><td>เลือกตามไลฟ์สไตล์ ใช้งานบนมือถือ</td><td>ตัวกรองสินค้า เมนูใหญ่ เครื่องมือแก้เนื้อหา</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ======================================================= SET A -->
+<section class="pg" data-sec="Concept Set A">
+  <div class="inner spread">
+    <div class="kicker"><span class="num">08</span>รายละเอียดทีละแบบ · Concept Set A</div>
+    <article class="dz">
+      <div class="browser"><div class="bar"><i></i><i></i><i></i><span>A-01 · Premium Street</span></div><div class="shot"><img src="../../library/GAMBOL-Design-Library/previews/set-a-01.jpg"></div></div>
+      <div>
+        <div class="top"><span class="code">A-01</span><span class="set">Concept Set A</span></div>
+        <h3>Premium Street</h3>
+        <p class="tagline">แบบนิตยสาร ขาวดำ แต้มส้มสด ตัวอักษรกว้าง เส้นสายเหลี่ยม</p>
+        <div class="pal"><i style="background:#0d0d0d"></i><i style="background:#f3f1ec"></i><i style="background:#ff5a1f"></i><span>สีหลัก</span></div>
+        <p class="for"><b>เหมาะกับ</b>คนเมืองอายุ 20–35 ที่ชอบแฟชั่นและสนีกเกอร์</p>
+      </div>
+      <div class="cols">
+        <div class="pill pro"><b>+ จุดแข็ง</b>ยกภาพลักษณ์แบรนด์ได้มากที่สุด ภาพสินค้าและตัวอักษรช่วยขาย</div>
+        <div class="pill con"><b>! ข้อควรระวัง</b>ต้องมีภาพถ่ายคุณภาพสูงสม่ำเสมอ อาจดูเย็นชาสำหรับครอบครัว</div>
+        <div class="pill use"><b>ใช้กับ</b>รีแบรนด์ เปิดตัวคอลเลกชัน คอลแลบ</div>
+      </div>
+      <div class="try"><b>ลองทำ</b><span>ชี้เมาส์ที่ชื่อหมวดหมู่ใหญ่ๆ เพื่อดูรูปสินค้าลอยขึ้น · ชี้การ์ดสินค้าเพื่อดูมุมอื่นและเลือกไซซ์ทันที</span></div>
+    </article>
+    <article class="dz">
+      <div class="browser"><div class="bar"><i></i><i></i><i></i><span>A-02 · Bold Sport</span></div><div class="shot"><img src="../../library/GAMBOL-Design-Library/previews/set-a-02.jpg"></div></div>
+      <div>
+        <div class="top"><span class="code">A-02</span><span class="set">Concept Set A</span></div>
+        <h3>Bold Sport</h3>
+        <p class="tagline">ตัวอักษรโปสเตอร์ สีเขียวมะนาวและน้ำเงิน เส้นทแยง การ์ดเอียง ข้อความวิ่ง</p>
+        <div class="pal"><i style="background:#0a0a0a"></i><i style="background:#d7ff3a"></i><i style="background:#2b37ff"></i><span>สีหลัก</span></div>
+        <p class="for"><b>เหมาะกับ</b>Gen Z นักศึกษา คนชอบออกกำลังกาย และใช้โซเชียลเยอะ</p>
+      </div>
+      <div class="cols">
+        <div class="pill pro"><b>+ จุดแข็ง</b>จดจำง่าย แชร์ง่าย "squish test" ทำให้รู้สึกถึงความนุ่ม</div>
+        <div class="pill con"><b>! ข้อควรระวัง</b>ภาพเคลื่อนไหวเยอะ อาจดูมากเกินไปสำหรับผู้ใหญ่</div>
+        <div class="pill use"><b>ใช้กับ</b>แคมเปญตามฤดูกาล สายกีฬา วัยรุ่น</div>
+      </div>
+      <div class="try"><b>ลองทำ</b><span>กดค้างที่ปุ่มทดสอบความนุ่ม · สลับสินค้าในภาพใหญ่ด้านบน · ชี้แผงกลุ่มลูกค้าที่ขยายได้</span></div>
+    </article>
+  </div>
+</section>
+
+<section class="pg" data-sec="Concept Set A">
+  <div class="inner spread">
+    <div class="kicker"><span class="num">08</span>รายละเอียดทีละแบบ · Concept Set A</div>
+    <article class="dz">
+      <div class="browser"><div class="bar"><i></i><i></i><i></i><span>A-03 · Lifestyle Storytelling</span></div><div class="shot"><img src="../../library/GAMBOL-Design-Library/previews/set-a-03.jpg"></div></div>
+      <div>
+        <div class="top"><span class="code">A-03</span><span class="set">Concept Set A</span></div>
+        <h3>Lifestyle Storytelling</h3>
+        <p class="tagline">โทนกระดาษอุ่น สีอิฐและเขียวมะกอก ตัวอักษรแบบนิตยสาร ภาพคอลลาจชีวิตจริง</p>
+        <div class="pal"><i style="background:#f5eee3"></i><i style="background:#a94b25"></i><i style="background:#56623a"></i><span>สีหลัก</span></div>
+        <p class="for"><b>เหมาะกับ</b>ครอบครัว อายุ 28–50 ที่เน้นความสบาย เลือกตามโอกาสใช้งาน</p>
+      </div>
+      <div class="cols">
+        <div class="pill pro"><b>+ จุดแข็ง</b>ค้นหาตามช่วงเวลาจริง ตรงกับวิธีเลือกรองเท้าของคนไทย</div>
+        <div class="pill con"><b>! ข้อควรระวัง</b>ต้องผลิตภาพและเรื่องราวใหม่ต่อเนื่อง ไม่อย่างนั้นจะดูเก่าเร็ว</div>
+        <div class="pill use"><b>ใช้กับ</b>คอนเทนต์ บทความ สินค้าครอบครัวและเด็ก</div>
+      </div>
+      <div class="try"><b>ลองทำ</b><span>กดแท็บช่วงเวลา แล้วกดจุดบนภาพเพื่อดูสินค้าที่อยู่ในภาพ</span></div>
+    </article>
+    <article class="dz">
+      <div class="browser"><div class="bar"><i></i><i></i><i></i><span>A-04 · Smart Commerce</span></div><div class="shot"><img src="../../library/GAMBOL-Design-Library/previews/set-a-04.jpg"></div></div>
+      <div>
+        <div class="top"><span class="code">A-04</span><span class="set">Concept Set A</span></div>
+        <h3>Smart Commerce</h3>
+        <p class="tagline">ขาวสะอาด ปุ่มน้ำเงิน แถบโปรเหลือง ข้อมูลแน่นแต่เป็นระเบียบ</p>
+        <div class="pal"><i style="background:#ffffff"></i><i style="background:#1d4ed8"></i><i style="background:#ffd24a"></i><span>สีหลัก</span></div>
+        <p class="for"><b>เหมาะกับ</b>ลูกค้ากลุ่มกว้าง ใช้มือถือ มองหาดีล อยากให้ "ช่วยเลือกให้หน่อย"</p>
+      </div>
+      <div class="cols">
+        <div class="pill pro"><b>+ จุดแข็ง</b>ขายได้ดีที่สุด: หาคู่ใน 3 คลิก ค้นหาทันใจ ใส่ตะกร้าเร็ว</div>
+        <div class="pill con"><b>! ข้อควรระวัง</b>ดูโดดเด่นน้อยที่สุด เสี่ยงดูคล้ายเว็บ marketplace</div>
+        <div class="pill use"><b>ใช้กับ</b>ร้านออนไลน์ประจำ ช่วงลดราคา หน้าโฆษณา</div>
+      </div>
+      <div class="try"><b>ลองทำ</b><span>ตอบ 3 ข้อใน "หาคู่ที่ใช่ใน 3 คลิก" แล้วดู % ความเหมาะสม · ดูตารางเปรียบเทียบสินค้า</span></div>
+    </article>
+  </div>
+</section>
+
+<section class="pg" data-sec="Concept Set A · B">
+  <div class="inner spread">
+    <div class="kicker"><span class="num">08</span>รายละเอียดทีละแบบ · Concept Set A</div>
+    <article class="dz">
+      <div class="browser"><div class="bar"><i></i><i></i><i></i><span>A-05 · Future Tech</span></div><div class="shot"><img src="../../library/GAMBOL-Design-Library/previews/set-a-05.jpg"></div></div>
+      <div>
+        <div class="top"><span class="code">A-05</span><span class="set">Concept Set A</span></div>
+        <h3>Future Tech</h3>
+        <p class="tagline">ห้องแล็บสีเทาเข้ม แผ่นสีครีมแบบตัวอย่างทดลอง สัญญาณส้มอำพัน</p>
+        <div class="pal"><i style="background:#121315"></i><i style="background:#ecebe6"></i><i style="background:#ffb547"></i><span>สีหลัก</span></div>
+        <p class="for"><b>เหมาะกับ</b>คนสนใจเทคโนโลยีและความสบาย คนเท้าล้าง่าย คนหาของขวัญ</p>
+      </div>
+      <div class="cols">
+        <div class="pill pro"><b>+ จุดแข็ง</b>อธิบาย G-BOLD เป็นภาพ (ชั้นพื้น แผนที่แรงกด กราฟ) ช่วยให้ราคาดูสมเหตุผล</div>
+        <div class="pill con"><b>! ข้อควรระวัง</b>ต้องมีผลทดสอบจริง โทนมืดอาจไม่เข้ากับภาพครอบครัวไทย</div>
+        <div class="pill use"><b>ใช้กับ</b>เปิดตัวเทคโนโลยี ไลน์พรีเมียม คู่ค้า</div>
+      </div>
+      <div class="try"><b>ลองทำ</b><span>เลื่อนดูพื้นรองเท้าแยกชั้น · สลับดูแผนที่แรงกด · ดูกราฟประสิทธิภาพ</span></div>
+    </article>
+    <div class="kicker" style="margin-top:2mm"><span class="num">08</span>รายละเอียดทีละแบบ · Concept Set B</div>
+    <article class="dz">
+      <div class="browser"><div class="bar"><i></i><i></i><i></i><span>B-01 · Modern Minimal</span></div><div class="shot"><img src="../../library/GAMBOL-Design-Library/previews/set-b-01.jpg"></div></div>
+      <div>
+        <div class="top"><span class="code">B-01</span><span class="set">Concept Set B</span></div>
+        <h3>Modern Minimal</h3>
+        <p class="tagline">เน้นสินค้าแบบนิตยสาร พื้นที่โล่ง ขาวและเงิน แต้มเหลืองมะนาว · "Own your everyday."</p>
+        <div class="pal"><i style="background:#fff"></i><i style="background:oklch(0.9 0.003 230)"></i><i style="background:oklch(0.88 0.17 116)"></i><i style="background:oklch(0.19 0.006 230)"></i><span>สีหลัก</span></div>
+        <p class="for"><b>เหมาะกับ</b>ลูกค้าที่ใส่ใจสไตล์ในชีวิตประจำวัน</p>
+      </div>
+      <div class="cols">
+        <div class="pill pro"><b>+ จุดแข็ง</b>ภาพลักษณ์โดดเด่น ใช้ได้กับหลายแคมเปญ ดูแลง่ายที่สุด</div>
+        <div class="pill con"><b>! ข้อควรระวัง</b>ต้องพึ่งภาพถ่ายสินค้าที่ดี</div>
+        <div class="pill use"><b>ใช้กับ</b>หน้าร้านหลักของแบรนด์</div>
+      </div>
+      <div class="try"><b>ลองทำ</b><span>สลับแคมเปญในภาพใหญ่ · ชี้การ์ดสินค้าเพื่อดูรูปเปลี่ยน</span></div>
+    </article>
+  </div>
+</section>
+
+<section class="pg" data-sec="Concept Set B">
+  <div class="inner spread">
+    <div class="kicker"><span class="num">08</span>รายละเอียดทีละแบบ · Concept Set B</div>
+    <article class="dz">
+      <div class="browser"><div class="bar"><i></i><i></i><i></i><span>B-02 · Bold Sport</span></div><div class="shot"><img src="../../library/GAMBOL-Design-Library/previews/set-b-02.jpg"></div></div>
+      <div>
+        <div class="top"><span class="code">B-02</span><span class="set">Concept Set B</span></div>
+        <h3>Bold Sport</h3>
+        <p class="tagline">ตัวอักษรสปอร์ตแบบเอียง เวทีสีส้ม พื้นดำ จัดวางแนวทแยง · "Less limits. More you."</p>
+        <div class="pal"><i style="background:oklch(0.575 0.195 35)"></i><i style="background:#141414"></i><i style="background:#fff"></i><span>สีหลัก</span></div>
+        <p class="for"><b>เหมาะกับ</b>คนรุ่นใหม่ ชอบกิจกรรม ตามเทรนด์</p>
+      </div>
+      <div class="cols">
+        <div class="pill pro"><b>+ จุดแข็ง</b>แคมเปญมีพลัง ดึงดูดสายตาสูง</div>
+        <div class="pill con"><b>! ข้อควรระวัง</b>ต้องคุมความเคลื่อนไหวและความแน่นของหน้า</div>
+        <div class="pill use"><b>ใช้กับ</b>เปิดตัวสินค้าใหม่ งานคอลแลบ</div>
+      </div>
+      <div class="try"><b>ลองทำ</b><span>ใช้ดัชนีหมวดหมู่แบบเร็ว · ลองปุ่มหมุนสินค้า · ดูแถบข้อความวิ่ง</span></div>
+    </article>
+    <article class="dz">
+      <div class="browser"><div class="bar"><i></i><i></i><i></i><span>B-03 · Lifestyle Editorial</span></div><div class="shot"><img src="../../library/GAMBOL-Design-Library/previews/set-b-03.jpg"></div></div>
+      <div>
+        <div class="top"><span class="code">B-03</span><span class="set">Concept Set B</span></div>
+        <h3>Lifestyle Editorial</h3>
+        <p class="tagline">วารสารที่เล่าผ่านผู้คน ตัวอักษร serif สีแดงเลือดหมู · "Every step has a story."</p>
+        <div class="pal"><i style="background:#fff"></i><i style="background:oklch(0.48 0.12 27)"></i><i style="background:#2a1d1a"></i><span>สีหลัก</span></div>
+        <p class="for"><b>เหมาะกับ</b>ครอบครัว และลูกค้าสายไลฟ์สไตล์</p>
+      </div>
+      <div class="cols">
+        <div class="pill pro"><b>+ จุดแข็ง</b>สร้างความผูกพันทางอารมณ์ เลือกสินค้าตามโอกาสใช้งาน</div>
+        <div class="pill con"><b>! ข้อควรระวัง</b>ทางไปถึงตัวสินค้ายาวกว่าแบบอื่น</div>
+        <div class="pill use"><b>ใช้กับ</b>ภาพลักษณ์ไลฟ์สไตล์และชุมชน</div>
+      </div>
+      <div class="try"><b>ลองทำ</b><span>กดแท็บ 6 ช่วงวันและโอกาส · กดซื้อจากในเรื่องราว · ในแถบสลับแนวคิด แบบนี้ชื่อ "Lifestyle Stories"</span></div>
+    </article>
+  </div>
+</section>
+
+<section class="pg" data-sec="Concept Set B">
+  <div class="inner spread">
+    <div class="kicker"><span class="num">08</span>รายละเอียดทีละแบบ · Concept Set B</div>
+    <article class="dz">
+      <div class="browser"><div class="bar"><i></i><i></i><i></i><span>B-04 · Smart Commerce</span></div><div class="shot"><img src="../../library/GAMBOL-Design-Library/previews/set-b-04.jpg"></div></div>
+      <div>
+        <div class="top"><span class="code">B-04</span><span class="set">Concept Set B</span></div>
+        <h3>Smart Commerce</h3>
+        <p class="tagline">สีขาว ปุ่มน้ำเงิน แถบค้นหาเด่นด้านบน ภาษาเป็นมิตร · "Your pair, found."</p>
+        <div class="pal"><i style="background:#fff"></i><i style="background:oklch(0.48 0.11 230)"></i><i style="background:oklch(0.92 0.035 230)"></i><span>สีหลัก</span></div>
+        <p class="for"><b>เหมาะกับ</b>ลูกค้าที่รู้ว่าต้องการอะไร และเน้นความสบาย</p>
+      </div>
+      <div class="cols">
+        <div class="pill pro"><b>+ จุดแข็ง</b>หาสินค้าเร็ว ตัวช่วยเลือก 3 ขั้นช่วยปิดการขาย</div>
+        <div class="pill con"><b>! ข้อควรระวัง</b>บุคลิกแบรนด์น้อยกว่าแบบอื่น</div>
+        <div class="pill use"><b>ใช้กับ</b>หน้าร้านออนไลน์หลัก</div>
+      </div>
+      <div class="try"><b>ลองทำ</b><span>ตอบ "Who are you shopping for?" ให้ครบ 3 ขั้น · กด <span class="kbd">⌘ K</span> หรือ <span class="kbd">Ctrl K</span> เพื่อค้นหา</span></div>
+    </article>
+    <article class="dz">
+      <div class="browser"><div class="bar"><i></i><i></i><i></i><span>B-05 · Future Footwear</span></div><div class="shot"><img src="../../library/GAMBOL-Design-Library/previews/set-b-05.jpg"></div></div>
+      <div>
+        <div class="top"><span class="code">B-05</span><span class="set">Concept Set B</span></div>
+        <h3>Future Footwear</h3>
+        <p class="tagline">เวทีโชว์สินค้าสีดำ แสงฟ้าเย็น ตัวอักษรบางแม่นยำ · "Comfort, engineered."</p>
+        <div class="pal"><i style="background:oklch(0.18 0.01 230)"></i><i style="background:oklch(0.83 0.09 220)"></i><i style="background:#fff"></i><span>สีหลัก</span></div>
+        <p class="for"><b>เหมาะกับ</b>คนสนใจเทคโนโลยีและความสบาย</p>
+      </div>
+      <div class="cols">
+        <div class="pill pro"><b>+ จุดแข็ง</b>สื่อสารนวัตกรรมของสินค้าได้ชัด</div>
+        <div class="pill con"><b>! ข้อควรระวัง</b>ต้องมีภาพสินค้าที่ละเอียดและถูกต้องกว่านี้</div>
+        <div class="pill use"><b>ใช้กับ</b>สินค้าเรือธง เรื่องเล่าเทคโนโลยี</div>
+      </div>
+      <div class="try"><b>ลองทำ</b><span>กดแท็บวัสดุ (ใช้ปุ่มลูกศรบนคีย์บอร์ดได้) · กดจุดบนสินค้า · ดูตารางเปรียบเทียบเทคโนโลยี</span></div>
+    </article>
+  </div>
+</section>
+
+<!-- ======================================================= COMPARE -->
+<section class="pg" data-sec="เปรียบเทียบ">
+  <div class="inner">
+    <div class="kicker" id="s9"><span class="num">09</span>ตารางเปรียบเทียบ</div>
+    <h2>ทั้ง 12 แบบ<em>เทียบกัน</em></h2>
+    <table style="margin-top:3mm">
+      <tr><th style="width:15mm">รหัส</th><th style="width:33mm">ชื่อ</th><th>บุคลิก</th><th>เหมาะกับ</th><th>จุดแข็ง</th><th>ข้อควรระวัง</th></tr>
+      <tr><td><span class="code red">E-A</span></td><td><b>Everyday A ★</b></td><td>อบอุ่น ไลฟ์สไตล์ ภาษาไทย</td><td>ลูกค้าทั่วไป มือถือ</td><td>ครบทุกหน้า เลือกตามไลฟ์สไตล์</td><td>ต้องถ่ายภาพจริงเพิ่ม</td></tr>
+      <tr><td><span class="code red">E-B</span></td><td><b>Everyday B ★</b></td><td>ชายทะเล สดใส คมชัด</td><td>ร้านออนไลน์หลัก</td><td>ครบทุกหน้า ตัวกรองดี แก้เนื้อหาเองได้</td><td>ข้อมูลสินค้าสมมติ</td></tr>
+      <tr><td><span class="code">A-01</span></td><td>Premium Street</td><td>ขาวดำ นิตยสาร</td><td>คนเมือง 20–35</td><td>ยกภาพลักษณ์สูงสุด</td><td>ต้องมีภาพถ่ายระดับสูง</td></tr>
+      <tr><td><span class="code">A-02</span></td><td>Bold Sport</td><td>โปสเตอร์ สีจัด</td><td>Gen Z สายกีฬา</td><td>จดจำง่าย แชร์ง่าย</td><td>เคลื่อนไหวเยอะ</td></tr>
+      <tr><td><span class="code">A-03</span></td><td>Lifestyle Storytelling</td><td>อบอุ่น นิตยสาร</td><td>ครอบครัว 28–50</td><td>เลือกตามโอกาส</td><td>ต้องทำคอนเทนต์ต่อเนื่อง</td></tr>
+      <tr><td><span class="code">A-04</span></td><td>Smart Commerce</td><td>สะอาด ใช้ง่าย</td><td>ลูกค้ากลุ่มกว้าง</td><td>ขายได้ดีที่สุด</td><td>ไม่โดดเด่น</td></tr>
+      <tr><td><span class="code">A-05</span></td><td>Future Tech</td><td>ห้องแล็บ โทนมืด</td><td>สายเทคโนโลยี</td><td>อธิบาย G-BOLD ชัด</td><td>ต้องมีผลทดสอบจริง</td></tr>
+      <tr><td><span class="code">B-01</span></td><td>Modern Minimal</td><td>โล่ง เน้นสินค้า</td><td>คนใส่ใจสไตล์</td><td>ภาพลักษณ์ดี ดูแลง่าย</td><td>พึ่งภาพสินค้า</td></tr>
+      <tr><td><span class="code">B-02</span></td><td>Bold Sport</td><td>สปอร์ต ส้ม–ดำ</td><td>วัยรุ่น แอคทีฟ</td><td>แคมเปญมีพลัง</td><td>ต้องคุมความแน่น</td></tr>
+      <tr><td><span class="code">B-03</span></td><td>Lifestyle Editorial</td><td>วารสาร ผู้คน</td><td>ครอบครัว ไลฟ์สไตล์</td><td>ผูกพันทางอารมณ์</td><td>ทางไปสินค้ายาว</td></tr>
+      <tr><td><span class="code">B-04</span></td><td>Smart Commerce</td><td>สะอาด เป็นมิตร</td><td>ลูกค้าที่รู้ใจตัวเอง</td><td>หาเร็ว ขายดี</td><td>บุคลิกน้อย</td></tr>
+      <tr><td><span class="code">B-05</span></td><td>Future Footwear</td><td>เวทีมืด แสงฟ้า</td><td>สายเทคโนโลยี</td><td>สื่อนวัตกรรม</td><td>ต้องมีภาพละเอียด</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ======================================================= DECIDE -->
+<section class="pg" data-sec="ช่วยตัดสินใจ">
+  <div class="inner">
+    <div class="kicker" id="s10"><span class="num">10</span>ช่วยตัดสินใจ</div>
+    <h2>แผนที่<em>บุคลิก</em>ของทั้ง 12 แบบ</h2>
+    <p class="small muted">ตำแหน่งโดยประมาณ อ้างอิงจากเอกสารออกแบบของแต่ละแบบ ใช้ประกอบการคุยเพื่อหาทิศทาง ไม่ใช่คะแนน</p>
+    <div class="map" id="map">
+      <span class="q" style="left:3mm;top:3mm">ทันสมัย · เน้นแบรนด์</span>
+      <span class="q" style="right:3mm;top:3mm">ทันสมัย · เน้นขาย</span>
+      <span class="q" style="left:3mm;bottom:3mm">อบอุ่น · เน้นแบรนด์</span>
+      <span class="q" style="right:3mm;bottom:3mm">อบอุ่น · เน้นขาย</span>
+      <span class="ax" style="left:50%;top:-5mm;transform:translateX(-50%)">▲ ทันสมัย / เทคโนโลยี</span>
+      <span class="ax" style="left:50%;bottom:-5.5mm;transform:translateX(-50%)">▼ อบอุ่น / ไลฟ์สไตล์</span>
+    </div>
+    <div class="key"><span><i style="background:var(--red)"></i>★ Featured</span><span><i style="background:#3d63dd"></i>Concept Set A</span><span><i style="background:#e07a00"></i>Concept Set B</span><span style="margin-left:auto;font-weight:700">◀ เน้นภาพลักษณ์ &nbsp;·&nbsp; เน้นการขาย ▶</span></div>
+
+    <h3 class="mt">เริ่มจาก "เป้าหมาย" ก่อน "ความชอบ"</h3>
+    <table>
+      <tr><th style="width:68mm">ถ้าเป้าหมายหลักคือ…</th><th>แบบที่ควรดูก่อน</th></tr>
+      <tr><td><b>ยกภาพลักษณ์แบรนด์ให้ทันสมัย</b></td><td><span class="code">A-01</span> <span class="code">B-01</span> และ <span class="code">A-02</span> <span class="code">B-02</span> ถ้าเน้นวัยรุ่น</td></tr>
+      <tr><td><b>เพิ่มยอดขายออนไลน์ หาของง่าย</b></td><td><span class="code">A-04</span> <span class="code">B-04</span> <span class="code red">E-B</span></td></tr>
+      <tr><td><b>เข้าถึงครอบครัวและไลฟ์สไตล์คนไทย</b></td><td><span class="code red">E-A</span> <span class="code">A-03</span> <span class="code">B-03</span></td></tr>
+      <tr><td><b>อธิบายเทคโนโลยี GBOLD ให้เข้าใจ</b></td><td><span class="code">A-05</span> <span class="code">B-05</span> และส่วน GBOLD ใน <span class="code red">E-A</span> <span class="code red">E-B</span></td></tr>
+      <tr><td><b>ได้เว็บที่ครบที่สุด พร้อมพัฒนาต่อ</b></td><td><span class="code red">E-A</span> <span class="code red">E-B</span> มีหน้าสินค้า เทคโนโลยี เรื่องราว ค้นหาร้าน</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="pg" data-sec="ช่วยตัดสินใจ">
+  <div class="inner">
+    <div class="kicker"><span class="num">10</span>ช่วยตัดสินใจ</div>
+    <h2>ถามตัวเอง<em>ก่อนเลือก</em></h2>
+    <div class="g2" style="margin-top:4mm">
+      <div class="card line">
+        <h4>เรื่องลูกค้า</h4>
+        <ul class="check" style="margin-top:3mm">
+          <li><b>ลูกค้าหลักของเราคือใคร?</b> วัยรุ่น คนทำงาน หรือครอบครัว</li>
+          <li><b>ลูกค้ารู้อยู่แล้วว่าจะซื้ออะไร</b> หรือต้องการคำแนะนำ</li>
+          <li><b>ลองบนมือถือแล้ว</b> ยังใช้ง่ายอยู่ไหม</li>
+        </ul>
+      </div>
+      <div class="card line">
+        <h4>เรื่องแบรนด์และทีม</h4>
+        <ul class="check" style="margin-top:3mm">
+          <li><b>เห็นแค่ 3 วินาที</b> จะจำแบรนด์เราได้ไหม</li>
+          <li><b>เข้ากับหน้าร้านจริง</b> บรรจุภัณฑ์ และโฆษณาของเราไหม</li>
+          <li><b>ทีมมีภาพถ่ายและคอนเทนต์ใหม่บ่อยแค่ไหน</b> แบบสายนิตยสารต้องใช้ภาพเยอะ</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card green mt">
+      <div class="ic">+</div>
+      <h4>เลือกผสมได้ ไม่ต้องเลือกแบบเดียว</h4>
+      <p>หยิบส่วนที่ดีจากหลายแบบมารวมกันได้ เช่น</p>
+      <div style="display:flex;gap:3mm;align-items:center;margin:4mm 0 3mm">
+        <div class="pill use" style="background:#fff;flex:1"><b>หน้าตาและบุคลิก</b>จากแบบที่ชอบที่สุด</div>
+        <span style="font:800 14pt var(--f);color:var(--green)">+</span>
+        <div class="pill use" style="background:#fff;flex:1"><b>ตัวช่วยหาคู่</b>จาก A-04 / B-04</div>
+        <span style="font:800 14pt var(--f);color:var(--green)">+</span>
+        <div class="pill use" style="background:#fff;flex:1"><b>ส่วนอธิบาย GBOLD</b>จาก A-05 / B-05</div>
+      </div>
+      <p class="small">เวลาให้ความเห็น บอกได้เลยว่าชอบ "ส่วนไหน" จาก "แบบไหน"</p>
+    </div>
+
+    <h3 class="mt">ขั้นตอนที่แนะนำสำหรับการตัดสินใจ</h3>
+    <ul class="steps" style="margin-top:3mm">
+      <li><span class="s">1</span><div><b>ตกลงเป้าหมายหลัก 1 ข้อ</b><p>ใช้ตารางในหน้าก่อน เลือก 3–4 แบบที่ตอบเป้าหมาย</p></div></li>
+      <li><span class="s">2</span><div><b>ลองแบบที่เลือกให้ครบขั้นตอนซื้อ</b><p>ทั้งบนคอมพิวเตอร์และมือถือ ตามหัวข้อ 06</p></div></li>
+      <li><span class="s">3</span><div><b>ให้คะแนนแยกกันก่อน แล้วค่อยคุยรวม</b><p>ใบให้คะแนนในหน้าถัดไป ช่วยไม่ให้ความเห็นคนแรกชี้นำคนอื่น</p></div></li>
+      <li><span class="s">4</span><div><b>สรุป 1 แบบหลัก + ส่วนที่อยากหยิบจากแบบอื่น</b><p>ส่งให้ทีมออกแบบทำต่อ</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================================================= SCORE -->
+<section class="pg" data-sec="ใบให้คะแนน">
+  <div class="inner">
+    <div class="kicker" id="s11"><span class="num">11</span>ใบให้คะแนน</div>
+    <h2>ให้คะแนน<em>แต่ละแบบ</em></h2>
+    <p class="small" style="margin-bottom:3mm">วงคะแนน 1–5 · 1 = ไม่ชอบเลย · 5 = ชอบมาก · พิมพ์หน้านี้ออกมาเขียน หรือจดตัวเลขส่งมาก็ได้</p>
+    <table class="score" id="score">
+      <tr><th style="width:18mm">แบบ</th><th>สวย / เข้ากับแบรนด์</th><th>ใช้งานง่าย</th><th>เหมาะกับลูกค้าเรา</th><th>ชอบโดยรวม</th></tr>
+    </table>
+    <h3 class="mt">3 อันดับที่ชอบที่สุด</h3>
+    <div class="rank" style="margin-top:2mm">
+      <div><b>1</b><span>รหัสแบบ และเหตุผลสั้นๆ</span></div>
+      <div><b>2</b><span>รหัสแบบ และเหตุผลสั้นๆ</span></div>
+      <div><b>3</b><span>รหัสแบบ และเหตุผลสั้นๆ</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= FEEDBACK + FAQ -->
+<section class="pg" data-sec="ความเห็น · FAQ">
+  <div class="inner">
+    <div class="kicker" id="s12"><span class="num">12</span>ส่งความเห็น และคำถามที่พบบ่อย</div>
+    <h2>ความเห็นที่ดี ช่วยให้<em>แก้ได้ตรงจุด</em></h2>
+    <p style="margin-bottom:3mm">ส่งกลับไปหา <b>คนที่แชร์ลิงก์นี้ให้คุณ</b> ผ่าน LINE อีเมล หรือคุยกันตรงๆ โดยใช้รูปแบบนี้:</p>
+    <div class="card" style="background:var(--ink);color:#fff;text-align:center;font:700 11pt var(--f);padding:4.5mm">รหัสแบบ &nbsp;·&nbsp; หน้าไหน / ส่วนไหน &nbsp;·&nbsp; ชอบ / ไม่ชอบ / อยากให้แก้อะไร</div>
+    <div class="g2" style="margin-top:4mm;gap:4mm">
+      <div class="pill pro"><b>✓ เขียนแบบนี้ดี</b>
+        <ul class="dots" style="margin-top:1.5mm"><li><b>B-04</b> · หน้าสินค้า · ปุ่มเลือกไซซ์เล็กไป กดบนมือถือยาก</li><li><b>E-A</b> · หน้าแรก · ชอบภาพใหญ่ อยากให้เห็นสินค้าเด็กเร็วกว่านี้</li><li><b>A-01 + A-04</b> · ชอบหน้าตา A-01 แต่อยากได้ตัวช่วยหาคู่แบบ A-04</li></ul></div>
+      <div class="pill con"><b>✗ แบบนี้ทีมแก้ต่อได้ยาก</b>
+        <ul class="dots" style="margin-top:1.5mm"><li>"ไม่ค่อยชอบ"</li><li>"หน้าแรกแปลกๆ"</li><li>"เอาแบบที่ดีที่สุด"</li></ul></div>
+    </div>
+    <p class="small muted" style="margin-top:3mm"><b>แนบภาพหน้าจอได้ยิ่งดี</b> · Mac <span class="kbd">⌘</span> <span class="kbd">Shift</span> <span class="kbd">4</span> · Windows <span class="kbd">⊞</span> <span class="kbd">Shift</span> <span class="kbd">S</span> · มือถือ กดปุ่มเปิด/ปิดพร้อมปุ่มเพิ่มเสียง</p>
+
+    <h3 class="mt">คำถามที่พบบ่อย</h3>
+    <table>
+      <tr><th style="width:62mm">ปัญหา</th><th>วิธีแก้</th></tr>
+      <tr><td><b>กด Preview แล้วหน้าขาว</b></td><td>รอ 5–10 วินาที ไฟล์ใหญ่ ถ้ายังขาว ให้กดรีเฟรช หรือเปลี่ยนเบราว์เซอร์</td></tr>
+      <tr><td><b>กลับหน้ารวมไม่ถูก</b></td><td>กดย้อนกลับ ← หลายครั้ง หรือเปิดลิงก์หลักใหม่</td></tr>
+      <tr><td><b>กดซื้อแล้วจะเสียเงินไหม</b></td><td><b>ไม่เสีย</b> ทุกปุ่มเป็นแบบจำลอง</td></tr>
+      <tr><td><b>ราคาหรือชื่อสินค้าไม่ตรง</b></td><td>เป็นข้อมูลสมมติ ใส่ไว้ให้เห็นภาพ</td></tr>
+      <tr><td><b>มีของค้างในตะกร้าจากครั้งก่อน</b></td><td>เว็บจำไว้ในเครื่องคุณ กดลบได้ หรือเปิดโหมดไม่ระบุตัวตน (Incognito)</td></tr>
+      <tr><td><b>ปุ่ม CMS / Studio คืออะไร</b></td><td>เครื่องมือสำหรับทีมงาน ข้ามได้</td></tr>
+      <tr><td><b>"ใช้ตำแหน่งของฉัน" ไม่ทำงาน</b></td><td>ต้องต่ออินเทอร์เน็ตและกดอนุญาต ข้อมูลร้านเป็นตัวอย่าง</td></tr>
+      <tr><td><b>หาเว็บนี้ใน Google ไม่เจอ</b></td><td>ตั้งใจไม่ให้ค้นเจอ เปิดได้จากลิงก์หรือ QR เท่านั้น</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ======================================================= BACK -->
+<section class="pg back" data-sec="back">
+  <div class="inner">
+    <div class="kicker" style="color:#ff7a8c">สรุป</div>
+    <h2>พร้อมแล้ว<br>เริ่มดูได้เลย</h2>
+    <p class="lead">ทั้งหมดอยู่ในลิงก์เดียว ใช้เวลาประมาณ 30 นาที</p>
+    <ul class="steps" style="margin-top:4mm">
+      <li><span class="s">1</span><div><b>เปิดลิงก์ หรือสแกน QR</b><p>หน้า Design Library รวมทั้ง 12 แบบ</p></div></li>
+      <li><span class="s">2</span><div><b>ดู ★ Featured ก่อน แล้วไล่ Set A และ Set B</b><p>กด Preview แล้วลองคลิกเล่นเหมือนลูกค้า</p></div></li>
+      <li><span class="s">3</span><div><b>ลองซื้อรองเท้า 1 คู่</b><p>ค้นหา → กรอง → เลือกสีและไซซ์ → ใส่ตะกร้า</p></div></li>
+      <li><span class="s">4</span><div><b>ให้คะแนน แล้วส่งความเห็นพร้อมรหัสแบบ</b><p>เช่น "B-04 · หน้าสินค้า · ปุ่มไซซ์เล็กไป"</p></div></li>
+    </ul>
+    <div class="wall">
+      <div><img src="../../library/GAMBOL-Design-Library/previews/everyday-a.jpg"><span class="code red">E-A</span></div>
+      <div><img src="../../library/GAMBOL-Design-Library/previews/everyday-b.jpg"><span class="code red">E-B</span></div>
+      <div><img src="../../library/GAMBOL-Design-Library/previews/set-a-01.jpg"><span class="code">A-01</span></div>
+      <div><img src="../../library/GAMBOL-Design-Library/previews/set-a-02.jpg"><span class="code">A-02</span></div>
+      <div><img src="../../library/GAMBOL-Design-Library/previews/set-a-03.jpg"><span class="code">A-03</span></div>
+      <div><img src="../../library/GAMBOL-Design-Library/previews/set-a-04.jpg"><span class="code">A-04</span></div>
+      <div><img src="../../library/GAMBOL-Design-Library/previews/set-a-05.jpg"><span class="code">A-05</span></div>
+      <div><img src="../../library/GAMBOL-Design-Library/previews/set-b-01.jpg"><span class="code">B-01</span></div>
+      <div><img src="../../library/GAMBOL-Design-Library/previews/set-b-02.jpg"><span class="code">B-02</span></div>
+      <div><img src="../../library/GAMBOL-Design-Library/previews/set-b-03.jpg"><span class="code">B-03</span></div>
+      <div><img src="../../library/GAMBOL-Design-Library/previews/set-b-04.jpg"><span class="code">B-04</span></div>
+      <div><img src="../../library/GAMBOL-Design-Library/previews/set-b-05.jpg"><span class="code">B-05</span></div>
+    </div>
+    <div class="foot">
+      <div class="qrbox" id="qr2"></div>
+      <div>
+        <div style="font-size:9pt;color:#a9a9b0;margin-bottom:1mm">GAMBOL Design Library</div>
+        <div class="u">bonvsbon.github.io/ui_design</div>
+        <div style="font-size:8pt;color:#8f8f96;margin-top:2mm">แบบร่างเพื่อการนำเสนอ ไม่ใช่เว็บไซต์ทางการของ GAMBOL · ข้อมูลสินค้า ราคา และสาขาเป็นข้อมูลสมมติ</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// QR codes
+for (const id of ['qr1', 'qr2']) {
+  try { const q = qrcode(0, 'M'); q.addData('https://bonvsbon.github.io/ui_design/'); q.make(); document.getElementById(id).innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true }) } catch (e) {}
+}
+
+// Page footers and contents page numbers
+const pages = [...document.querySelectorAll('.pg')]
+pages.forEach((pg, i) => {
+  const sec = pg.dataset.sec
+  if (sec === 'cover' || sec === 'back') return
+  const f = document.createElement('div'); f.className = 'pf'
+  f.innerHTML = `<span>GAMBOL · Design Library Guide</span><span class="sec">${sec}</span><span class="no">${String(i + 1).padStart(2, '0')}</span>`
+  pg.append(f)
+})
+document.querySelectorAll('[data-toc]').forEach((el) => {
+  const target = document.getElementById(el.dataset.toc)
+  if (target) el.textContent = 'หน้า ' + (pages.indexOf(target.closest('.pg')) + 1)
+})
+
+// Score table rows
+const codes = [['E-A', 1], ['E-B', 1], ['A-01'], ['A-02'], ['A-03'], ['A-04'], ['A-05'], ['B-01'], ['B-02'], ['B-03'], ['B-04'], ['B-05']]
+const circles = '<td class="c">' + [1, 2, 3, 4, 5].map((n) => `<i>${n}</i>`).join('') + '</td>'
+document.getElementById('score').insertAdjacentHTML('beforeend', codes.map(([c, f]) =>
+  `<tr><td><span class="code${f ? ' red' : ''}">${c}</span></td>${circles.repeat(4)}</tr>`).join(''))
+
+// Personality map (x: 0 brand → 100 sales, y: 0 warm → 100 modern)
+const map = document.getElementById('map')
+const pts = [['E-A', 'e', 52, 26], ['E-B', 'e', 66, 46], ['A-01', 'a', 18, 70], ['A-02', 'a', 26, 86], ['A-03', 'a', 24, 14], ['A-04', 'a', 88, 56],
+  ['A-05', 'a', 44, 92], ['B-01', 'b', 32, 61], ['B-02', 'b', 37, 78], ['B-03', 'b', 13, 26], ['B-04', 'b', 80, 38], ['B-05', 'b', 57, 86]]
+for (const [c, k, x, y] of pts) map.insertAdjacentHTML('beforeend', `<div class="pt ${k}" style="left:${x}%;top:${100 - y}%"><i></i><span>${c}</span></div>`)
+
+// Numbered markers on annotated screenshots (positions recorded by capture.cjs)
+const ANN = /*ANN*/{}
+function placeMarkers() {
+  document.querySelectorAll('[data-ann]').forEach((frame) => {
+    const img = frame.querySelector('img')
+    const scale = frame.clientWidth / img.naturalWidth
+    const H = frame.clientHeight
+    ;(ANN[frame.dataset.ann] || []).forEach((r, i) => {
+      if (!r || (r.y + r.h / 2) * scale > H - 8) return
+      const ring = document.createElement('div'); ring.className = 'ring'
+      Object.assign(ring.style, { left: r.x * scale + 'px', top: r.y * scale + 'px', width: r.w * scale + 'px', height: r.h * scale + 'px' })
+      const mk = document.createElement('div'); mk.className = 'mk'; mk.textContent = i + 1
+      // Sit just left of the element; fall back to its right side, then inside it.
+      let cx = r.x - 34
+      if (cx < 30) cx = r.x + r.w + 34 < img.naturalWidth - 30 ? r.x + r.w + 34 : r.x + 40
+      Object.assign(mk.style, { left: cx * scale + 'px', top: (r.y + r.h / 2) * scale + 'px' })
+      frame.append(ring, mk)
+    })
+  })
+}
+window.addEventListener('load', placeMarkers)
+</script>
+</body>
+</html>

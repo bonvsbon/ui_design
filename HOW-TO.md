@@ -149,6 +149,20 @@ git push
 
 ชื่อ แท็ก และไฮไลต์อยู่ในส่วน `FEATURED`, `SET_A` และ `SET_B` ของ `library/_build/build-design-library.py` ส่วนหน้าตาและสีอยู่ใน `library/_build/design-library-template.html` แก้แล้วเริ่มทำตาม [ขั้นที่ 2](#6-อัปเดตลิงก์ที่แชร์ให้เพื่อน) ได้เลย
 
+### อัปเดตคู่มือ PDF สำหรับผู้ชม
+
+คู่มือการดูและเลือกแบบอยู่ที่ `guide/GAMBOL-Demo-Guide.pdf` ภาพในคู่มือถ่ายจากเว็บจริง ถ้าเว็บเปลี่ยน ให้ถ่ายภาพใหม่แล้วสร้าง PDF ใหม่:
+
+```bash
+NODE_PATH=designs/concept-set-b/node_modules node guide/_build/capture.cjs
+```
+
+```bash
+NODE_PATH=designs/concept-set-b/node_modules node guide/_build/build-guide.cjs
+```
+
+แก้เนื้อหาคู่มือได้ที่ `guide/_build/guide.html`
+
 ## 7. เอาแบบเดียวไปทำต่อ
 
 copy โฟลเดอร์ของแบบนั้นออกไป โดยไม่ต้องเอาไฟล์ที่สร้างใหม่ได้ไปด้วย:
