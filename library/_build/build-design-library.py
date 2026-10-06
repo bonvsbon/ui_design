@@ -260,6 +260,19 @@ README = '''GAMBOL · Design Library (Portable / Offline)
 '''
 
 
+def add_noindex():
+    """Keep the shared prototypes out of search engines when the library is published."""
+    tag = '<meta name="robots" content="noindex, nofollow">'
+    for f in OUT.rglob('*.html'):
+        html = f.read_text()
+        if tag in html:
+            continue
+        html, n = re.subn(r'(<meta charset="utf-8">)', r'\1' + tag, html, count=1, flags=re.I)
+        if not n:
+            html = re.sub(r'(<head[^>]*>)', r'\1' + tag, html, count=1, flags=re.I)
+        f.write_text(html)
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     copy_portables()
@@ -268,6 +281,7 @@ def main():
     if '--shots' in sys.argv or any(not (OUT / 'previews' / f"{e['id']}.jpg").exists() for e in items):
         screenshots(items)
     render(items)
+    add_noindex()
     (OUT / 'README.txt').write_text(README)
     zip_path = OUT.with_suffix('.zip')
     with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as z:
