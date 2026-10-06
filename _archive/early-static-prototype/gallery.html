@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#cf202e">
+    <meta name="description" content="ค้นหารองเท้า Gambol คู่ที่เข้ากับสไตล์และกิจกรรมในทุกวัน">
+    <title>GAMBOL | แค่เดิน ก็เด่นแล้ว</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="directions.css">
+    <script src="app.js" defer></script>
+    <link rel="stylesheet" href="gallery.css">
+    <script src="gallery.js" defer></script>
+  </head>
+  <body data-design="gallery">
+    <header class="site-header" id="top">
+      <a class="brand" href="#top" aria-label="Gambol หน้าหลัก">
+        <img src="assets/gambol-mark.png" alt="">
+        <span class="brand-copy">
+          <strong>GAMBOL</strong>
+          <small>แค่เดิน...ก็เด่นแล้ว</small>
+        </span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="เปิดเมนู">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+
+      <nav class="main-nav" id="main-nav" aria-label="เมนูหลัก">
+        <a href="#products">สินค้า</a>
+        <a href="#gbold">G-BOLD Technology</a>
+        <a href="#about">รู้จัก Gambol</a>
+      </nav>
+
+      <button class="bag-button" type="button" data-open-cart aria-label="เปิดถุงสินค้า">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 12H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg>
+        <span class="bag-label">ถุงสินค้า</span>
+        <span class="bag-count" data-bag-count>0</span>
+      </button>
+    </header>
+
+    <main>
+      <div class="gallery-subnav"><strong>แค่เดิน...ก็เด่นแล้ว</strong><a href="#products">เลือกรองเท้า <span aria-hidden="true">›</span></a></div>
+      <section class="gallery-hero" aria-labelledby="gallery-title">
+        <p class="gallery-model">GAMBOL ICONIC</p>
+        <h1 id="gallery-title">คู่เดิมที่คุ้นเคย<br>ความสบายที่เป็นคุณ.</h1>
+        <p class="gallery-lead">นุ่ม เบา พร้อมไปกับทุกวันของคุณ</p>
+        <div class="gallery-actions"><button class="gallery-primary" data-gallery-product="iconic">รู้จัก ICONIC</button><a class="gallery-secondary" href="#products">เลือกคู่ของคุณ</a></div>
+        <img class="gallery-hero-image" src="assets/product-iconic-clean.jpg" alt="รองเท้า Gambol ICONIC สีม่วง" fetchpriority="high" width="900" height="500">
+        <p class="gallery-caption">ICONIC · 465 บาท <span>มีไซซ์ 36–46</span></p>
+      </section>
+      <section class="gallery-dark" aria-labelledby="gallery-comfort-title">
+        <p class="gallery-model">G-BOLD Technology™</p>
+        <h2 id="gallery-comfort-title">เบาที่เท้า.<br><span>สบายทุกก้าว.</span></h2>
+        <p>รู้จักเทคโนโลยีเบื้องหลังความนุ่ม<br>ที่ทำให้ทุกวันเป็นวันของ Gambol</p>
+        <a href="#gbold">สำรวจความสบาย <span aria-hidden="true">›</span></a>
+        <div class="gallery-material" aria-hidden="true"><img src="assets/product-iconic-clean.jpg" alt="" loading="lazy"></div>
+      </section>
+      <div class="gallery-pair">
+        <section class="gallery-tile"><h2>BOLD</h2><p>เรียบง่าย แต่มีสไตล์ของตัวเอง.</p><button class="gallery-text" data-gallery-product="bold">รู้จัก BOLD <span aria-hidden="true">›</span></button><img src="assets/product-bold.jpg" alt="Gambol BOLD สายคาดคู่สีน้ำตาลอ่อน" loading="lazy"><span>405 บาท</span></section>
+        <section class="gallery-tile gallery-tile-cozy"><h2>COZY</h2><p>ปล่อยวันสบาย ให้สบายกว่าเดิม.</p><button class="gallery-text" data-gallery-product="cozy">รู้จัก COZY <span aria-hidden="true">›</span></button><img src="assets/product-cozy-clean.jpg" alt="Gambol COZY สีเขียวและครีม" loading="lazy"><span>499 บาท</span></section>
+      </div>
+
+      <section class="category-strip" aria-label="เลือกประเภทสินค้า">
+        <p>เลือกตามสไตล์ของคุณ</p>
+        <div class="category-shortcuts">
+          <button type="button" data-shortcut-category="flip">แตะหนีบ <span aria-hidden="true">↗</span></button>
+          <button type="button" data-shortcut-category="slide">แตะสวม <span aria-hidden="true">↗</span></button>
+          <button type="button" data-shortcut-category="sneaker">รองเท้าผ้าใบ <span aria-hidden="true">↗</span></button>
+        </div>
+        <span class="category-note">รุ่นและไซซ์อาจแตกต่างกันในแต่ละแบบ</span>
+      </section>
+
+      <section class="products-section section-shell" id="products" aria-labelledby="products-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-label">FIND YOUR PAIR</p>
+            <h2 id="products-title">คู่ที่ใช่ เริ่มจากตรงนี้</h2>
+          </div>
+          <p class="section-intro">ดูรองเท้าแตะหนีบ รองเท้าแตะสวม และรองเท้าผ้าใบจาก Gambol ในที่เดียว</p>
+        </div>
+
+        <div class="product-controls">
+          <div class="filter-list" role="group" aria-label="กรองสินค้าตามประเภท">
+            <button class="filter-button is-active" type="button" data-category="all" aria-pressed="true">ทั้งหมด</button>
+            <button class="filter-button" type="button" data-category="flip" aria-pressed="false">แตะหนีบ</button>
+            <button class="filter-button" type="button" data-category="slide" aria-pressed="false">แตะสวม</button>
+            <button class="filter-button" type="button" data-category="sneaker" aria-pressed="false">ผ้าใบ</button>
+          </div>
+          <div class="product-tools">
+            <label class="search-box">
+              <span class="sr-only">ค้นหารุ่นหรือประเภทสินค้า</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg>
+              <input id="product-search" type="search" placeholder="ค้นหารุ่น" autocomplete="off">
+            </label>
+            <label class="sort-box">
+              <span class="sr-only">เรียงสินค้า</span>
+              <select id="product-sort">
+                <option value="recommended">แนะนำ</option>
+                <option value="price-asc">ราคาต่ำไปสูง</option>
+                <option value="price-desc">ราคาสูงไปต่ำ</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <p class="results-line" id="results-line" aria-live="polite"></p>
+        <div class="product-grid" id="product-grid"></div>
+        <div class="empty-state" id="empty-state" hidden>
+          <span class="empty-mark" aria-hidden="true">G</span>
+          <h3>ยังไม่เจอรุ่นที่ค้นหา</h3>
+          <p>ลองเปลี่ยนคำค้นหรือเลือกดูสินค้าทั้งหมด</p>
+          <button class="button button-dark" type="button" data-reset-filters>ดูสินค้าทั้งหมด</button>
+        </div>
+      </section>
+
+      <section class="technology-section" id="gbold" aria-labelledby="technology-title">
+        <div class="technology-shell">
+          <div class="technology-lead">
+            <p class="section-label section-label-light">G-BOLD TECHNOLOGY™</p>
+            <h2 id="technology-title">ความสบาย<br>ที่มีเหตุผล</h2>
+            <p>เทคโนโลยีวัสดุเฉพาะของ Gambol ที่ช่วยให้รองเท้าแต่ละรุ่นตอบโจทย์การใช้งานในชีวิตประจำวัน</p>
+            <a class="text-link text-link-light" href="https://www.gambol.co.th/" target="_blank" rel="noreferrer">อ่านเพิ่มเติมบนเว็บไซต์ Gambol <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="technology-points">
+            <article class="technology-point">
+              <span class="point-word">SOFT</span>
+              <h3>สัมผัสนุ่ม</h3>
+              <p>วัสดุที่ออกแบบให้สัมผัสสบายเท้าในแต่ละก้าว</p>
+            </article>
+            <article class="technology-point">
+              <span class="point-word">LITE</span>
+              <h3>น้ำหนักเบา</h3>
+              <p>เลือกวัสดุให้เหมาะกับทรงและการใช้งานของแต่ละรุ่น</p>
+            </article>
+            <article class="technology-point">
+              <span class="point-word">COMFORT</span>
+              <h3>ใส่สบาย</h3>
+              <p>มีทรงและรูปแบบให้เลือกตามสไตล์ที่คุณใส่เป็นประจำ</p>
+            </article>
+            <p class="technology-footnote">คุณสมบัติแตกต่างกันตามรุ่น โปรดดูรายละเอียดสินค้าก่อนเลือกซื้อ</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-section section-shell" id="about">
+        <div class="about-copy">
+          <p class="section-label">MADE FOR YOUR DAY</p>
+          <h2>วันของคุณ<br>มีหลายจังหวะ</h2>
+          <p>Gambol มีรองเท้าหลายรูปแบบให้เลือก ตั้งแต่แตะหนีบสำหรับวันสบาย ๆ แตะสวมที่ปรับกระชับได้ ไปจนถึงรองเท้าผ้าใบสำหรับวันที่อยากคลุมเท้า</p>
+          <a class="button button-red" href="#products">ค้นหารุ่นที่ใช่ <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="about-gallery" aria-label="ตัวอย่างรองเท้า Gambol">
+          <figure class="gallery-item gallery-item-large">
+            <img src="assets/product-bold.jpg" alt="รองเท้าแตะสวม Gambol รุ่น BOLD แบบสายคาดคู่" loading="lazy">
+            <figcaption><span>01</span> แตะสวม</figcaption>
+          </figure>
+          <figure class="gallery-item gallery-item-small">
+            <img src="assets/product-slip-on-clean.jpg" alt="รองเท้าผ้าใบ Gambol รุ่น SLIP-ON" loading="lazy">
+            <figcaption><span>02</span> ผ้าใบ</figcaption>
+          </figure>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <a class="brand brand-footer" href="#top" aria-label="Gambol กลับไปด้านบน">
+          <img src="assets/gambol-mark.png" alt="">
+          <span class="brand-copy"><strong>GAMBOL</strong><small>แค่เดิน...ก็เด่นแล้ว</small></span>
+        </a>
+        <p>เลือกรองเท้าที่เข้ากับทุกวันของคุณ</p>
+        <a class="button button-light" href="https://shop.gambol.co.th/" target="_blank" rel="noreferrer">ไปที่ร้าน Gambol <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="footer-bottom">
+        <span>ต้นแบบเว็บไซต์เพื่อสำรวจสินค้า</span>
+        <span>ตะกร้าสินค้าเป็นตัวอย่าง และไม่ได้เชื่อมต่อระบบชำระเงิน</span>
+        <span>© GAMBOL</span>
+      </div>
+    </footer>
+
+    <dialog class="product-dialog" id="product-dialog" aria-labelledby="dialog-title">
+      <button class="dialog-close" type="button" data-close-product aria-label="ปิดรายละเอียดสินค้า">×</button>
+      <div class="dialog-product-art"><img id="dialog-image" src="" alt=""></div>
+      <div class="dialog-product-copy">
+        <p class="section-label" id="dialog-category"></p>
+        <h2 id="dialog-title"></h2>
+        <p class="dialog-price" id="dialog-price"></p>
+        <p class="dialog-description" id="dialog-description"></p>
+        <p class="dialog-feature" id="dialog-feature"></p>
+        <label class="size-select-label" for="dialog-size">เลือกไซซ์</label>
+        <select id="dialog-size"></select>
+        <div class="dialog-actions">
+          <button class="button button-red" type="button" id="add-to-bag">เพิ่มใส่ถุง</button>
+          <a class="button button-outline" id="official-product-link" href="#" target="_blank" rel="noreferrer">ดูที่ร้านทางการ <span aria-hidden="true">↗</span></a>
+        </div>
+        <p class="dialog-note" id="dialog-note">ราคา ไซซ์ และสต็อกอาจเปลี่ยนแปลง โปรดตรวจสอบข้อมูลล่าสุดที่ร้านทางการ</p>
+      </div>
+    </dialog>
+
+    <dialog class="cart-dialog" id="cart-dialog" aria-labelledby="cart-title">
+      <div class="cart-header">
+        <div><p class="section-label">YOUR PICKS</p><h2 id="cart-title">ถุงสินค้าของคุณ</h2></div>
+        <button class="dialog-close cart-close" type="button" data-close-cart aria-label="ปิดถุงสินค้า">×</button>
+      </div>
+      <div class="cart-items" id="cart-items"></div>
+      <div class="cart-empty" id="cart-empty">
+        <p>ยังไม่มีสินค้าในถุง</p>
+        <button class="text-link" type="button" data-close-cart>เลือกดูสินค้า <span aria-hidden="true">↗</span></button>
+      </div>
+      <div class="cart-summary" id="cart-summary" hidden>
+        <div class="cart-total"><span>รวมโดยประมาณ</span><strong id="cart-total"></strong></div>
+        <a class="button button-red cart-store-link" href="https://shop.gambol.co.th/" target="_blank" rel="noreferrer">ไปเลือกซื้อที่ร้านทางการ <span aria-hidden="true">↗</span></a>
+        <p>รายการในถุงนี้เป็นตัวอย่างสำหรับต้นแบบ</p>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

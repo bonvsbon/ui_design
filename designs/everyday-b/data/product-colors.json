@@ -1,0 +1,122 @@
+{
+  "0": [],
+  "1": [
+    {
+      "name": "Brown",
+      "value": "oklch(0.66 0.08 65)",
+      "image": "/images/variant-2-0.png"
+    },
+    {
+      "name": "Blue",
+      "value": "oklch(0.45 0.10 235)",
+      "image": "/images/variant-2-1.png"
+    },
+    {
+      "name": "Black",
+      "value": "oklch(0.23 0 0)",
+      "image": "/images/variant-2-2.png"
+    }
+  ],
+  "2": [
+    {
+      "name": "Black",
+      "value": "oklch(0.23 0 0)",
+      "image": "/images/variant-3-0.png"
+    },
+    {
+      "name": "Red",
+      "value": "oklch(0.52 0.18 26)",
+      "image": "/images/variant-3-1.png"
+    },
+    {
+      "name": "Light / Brown",
+      "value": "oklch(0.66 0.08 65)",
+      "image": "/images/variant-3-2.png"
+    }
+  ],
+  "3": [
+    {
+      "name": "Black / White",
+      "value": "oklch(0.23 0 0)",
+      "image": "/images/variant-4-0.png"
+    },
+    {
+      "name": "Brown",
+      "value": "oklch(0.66 0.08 65)",
+      "image": "/images/variant-4-1.png"
+    },
+    {
+      "name": "Black / Blue",
+      "value": "oklch(0.23 0 0)",
+      "image": "/images/variant-4-2.png"
+    }
+  ],
+  "4": [
+    {
+      "name": "Navy / Orange",
+      "value": "oklch(0.3 0.05 260)",
+      "image": "/images/variant-5-0.png"
+    },
+    {
+      "name": "Black / Red",
+      "value": "oklch(0.23 0 0)",
+      "image": "/images/variant-5-1.png"
+    },
+    {
+      "name": "Black / Blue",
+      "value": "oklch(0.23 0 0)",
+      "image": "/images/variant-5-2.png"
+    }
+  ],
+  "5": [
+    {
+      "name": "Yellow",
+      "value": "oklch(0.87 0.17 116)",
+      "image": "/images/variant-6-0.png"
+    },
+    {
+      "name": "Brown",
+      "value": "oklch(0.66 0.08 65)",
+      "image": "/images/variant-6-1.png"
+    },
+    {
+      "name": "Blue",
+      "value": "oklch(0.45 0.10 235)",
+      "image": "/images/variant-6-2.png"
+    }
+  ],
+  "6": [
+    {
+      "name": "Blue",
+      "value": "oklch(0.45 0.10 235)",
+      "image": "/images/variant-7-0.png"
+    },
+    {
+      "name": "Light / Brown",
+      "value": "oklch(0.66 0.08 65)",
+      "image": "/images/variant-7-1.png"
+    },
+    {
+      "name": "Red / Brick",
+      "value": "oklch(0.52 0.18 26)",
+      "image": "/images/variant-7-2.png"
+    }
+  ],
+  "7": [
+    {
+      "name": "Gray",
+      "value": "oklch(0.23 0 0)",
+      "image": "/images/variant-8-0.png"
+    },
+    {
+      "name": "Blue",
+      "value": "oklch(0.45 0.10 235)",
+      "image": "/images/variant-8-1.png"
+    },
+    {
+      "name": "Tan",
+      "value": "oklch(0.23 0 0)",
+      "image": "/images/variant-8-2.png"
+    }
+  ]
+}

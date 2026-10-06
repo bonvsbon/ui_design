@@ -1,0 +1,266 @@
+{
+  "base": "http://localhost:3100",
+  "date": "2026-10-06T07:23:30.703Z",
+  "checks": [
+    {
+      "route": "/",
+      "width": 1440,
+      "scroll": 1440,
+      "broken": []
+    },
+    {
+      "route": "/products",
+      "width": 1440,
+      "scroll": 1440,
+      "broken": []
+    },
+    {
+      "route": "/product/demo",
+      "width": 1440,
+      "scroll": 1440,
+      "broken": []
+    },
+    {
+      "route": "/technology",
+      "width": 1440,
+      "scroll": 1440,
+      "broken": []
+    },
+    {
+      "route": "/stories",
+      "width": 1440,
+      "scroll": 1440,
+      "broken": []
+    },
+    {
+      "route": "/stores",
+      "width": 1440,
+      "scroll": 1440,
+      "broken": []
+    },
+    {
+      "route": "/stories/weekend-style-guide",
+      "width": 1440,
+      "scroll": 1440,
+      "broken": []
+    },
+    {
+      "route": "/about",
+      "width": 1440,
+      "scroll": 1440,
+      "broken": []
+    },
+    {
+      "route": "/support",
+      "width": 1440,
+      "scroll": 1440,
+      "broken": []
+    },
+    {
+      "route": "/studio",
+      "width": 1440,
+      "scroll": 1440,
+      "broken": []
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "scroll": 390,
+      "broken": []
+    },
+    {
+      "route": "/products",
+      "width": 390,
+      "scroll": 390,
+      "broken": []
+    },
+    {
+      "route": "/product/demo",
+      "width": 390,
+      "scroll": 390,
+      "broken": []
+    },
+    {
+      "route": "/technology",
+      "width": 390,
+      "scroll": 390,
+      "broken": []
+    },
+    {
+      "route": "/stories",
+      "width": 390,
+      "scroll": 390,
+      "broken": []
+    },
+    {
+      "route": "/stores",
+      "width": 390,
+      "scroll": 390,
+      "broken": []
+    },
+    {
+      "route": "/stories/weekend-style-guide",
+      "width": 390,
+      "scroll": 390,
+      "broken": []
+    },
+    {
+      "route": "/about",
+      "width": 390,
+      "scroll": 390,
+      "broken": []
+    },
+    {
+      "route": "/support",
+      "width": 390,
+      "scroll": 390,
+      "broken": []
+    },
+    {
+      "route": "/studio",
+      "width": 390,
+      "scroll": 390,
+      "broken": []
+    },
+    {
+      "responsive": "/",
+      "width": 360
+    },
+    {
+      "responsive": "/products",
+      "width": 360
+    },
+    {
+      "responsive": "/product/demo",
+      "width": 360
+    },
+    {
+      "responsive": "/",
+      "width": 768
+    },
+    {
+      "responsive": "/products",
+      "width": 768
+    },
+    {
+      "responsive": "/product/demo",
+      "width": 768
+    },
+    {
+      "responsive": "/",
+      "width": 1024
+    },
+    {
+      "responsive": "/products",
+      "width": 1024
+    },
+    {
+      "responsive": "/product/demo",
+      "width": 1024
+    },
+    {
+      "flow": "mega menu and Escape"
+    },
+    {
+      "flow": "search suggestions, empty state and Escape"
+    },
+    {
+      "flow": "wishlist persistence"
+    },
+    {
+      "flow": "quick view, size validation, bag quantity, persistence, preview and removal"
+    },
+    {
+      "flow": "filtering, sorting, empty state and reset"
+    },
+    {
+      "flow": "PDP color and size carry through to bag"
+    },
+    {
+      "flow": "technology tabs and keyboard navigation"
+    },
+    {
+      "flow": "store province and district search"
+    },
+    {
+      "flow": "CMS preview persistence and restore"
+    },
+    {
+      "flow": "mobile filter drawer"
+    },
+    {
+      "flow": "mobile menu and technology accordion"
+    }
+  ],
+  "accessibility": [
+    {
+      "label": "/-1440",
+      "violations": []
+    },
+    {
+      "label": "/products-1440",
+      "violations": []
+    },
+    {
+      "label": "/product/demo-1440",
+      "violations": []
+    },
+    {
+      "label": "/technology-1440",
+      "violations": []
+    },
+    {
+      "label": "/stores-1440",
+      "violations": []
+    },
+    {
+      "label": "/studio-1440",
+      "violations": []
+    },
+    {
+      "label": "/-390",
+      "violations": []
+    },
+    {
+      "label": "/products-390",
+      "violations": []
+    },
+    {
+      "label": "/product/demo-390",
+      "violations": []
+    },
+    {
+      "label": "/technology-390",
+      "violations": []
+    },
+    {
+      "label": "/stores-390",
+      "violations": []
+    },
+    {
+      "label": "/studio-390",
+      "violations": []
+    },
+    {
+      "label": "search-dialog",
+      "violations": []
+    },
+    {
+      "label": "wishlist-dialog",
+      "violations": []
+    },
+    {
+      "label": "bag-dialog",
+      "violations": []
+    },
+    {
+      "label": "mobile-filter-dialog",
+      "violations": []
+    },
+    {
+      "label": "mobile-menu-dialog",
+      "violations": []
+    }
+  ],
+  "errors": []
+}

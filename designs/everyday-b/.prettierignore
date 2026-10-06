@@ -1,0 +1,9 @@
+node_modules
+.nuxt
+.output
+docs/qa
+docs/references
+public
+package-lock.json
+data/*sources.json
+data/product-colors.json

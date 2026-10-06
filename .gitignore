@@ -1,0 +1,25 @@
+# Dependencies and build output (recreate with npm install / npm run build)
+node_modules/
+.nuxt/
+.output/
+.data/
+.portable-build/
+dist
+
+# Offline exports: rebuild with each project's portable script
+designs/*/portable/
+_archive/early-static-prototype/exports/
+library/*.zip
+
+# Test output and caches
+.playwright/
+test-results/
+scripts/.cache/
+*.log
+
+# Local tool and editor config
+.claude/
+.impeccable/
+.DS_Store
+.env
+.env.*

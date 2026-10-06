@@ -1,0 +1,85 @@
+/* Shared interaction safeguards and three independent hero compositions. */
+dialog:not([open]) { display: none; }
+.search-box:focus-within,.sort-box:focus-within { outline: 3px solid var(--red); outline-offset: 3px; }
+.direction-hero { --accent: var(--red); }
+.direction-hero h1 { margin: 0; font-size: clamp(3rem,6.3vw,6rem); line-height: 1.12; letter-spacing: -.035em; font-weight: 800; }
+.direction-hero h1 em { font-style: normal; color: var(--accent); }
+.direction-overline { font-size: .68rem; letter-spacing: .12em; font-weight: 700; }
+.direction-action { display:inline-flex; align-items:center; justify-content:space-between; gap:26px; border:0; border-radius:0; background:var(--accent); color:var(--white); padding:15px 22px; font-weight:700; font-size:.86rem; cursor:pointer; transition:transform 180ms ease; }
+.direction-action:hover { transform:translateY(-3px); }
+.direction-hero img { mix-blend-mode:multiply; }
+body:is([data-design="studio"],[data-design="playground"],[data-design="dayfinder"]) { --hero-text:var(--white); --hero-highlight:oklch(.92 .12 98); --category-surface:var(--white); --category-text:var(--ink); --tech-surface:var(--ink); --tech-copy:var(--white); --footer-surface:var(--red); }
+body:is([data-design="studio"],[data-design="playground"],[data-design="dayfinder"]) .site-header { backdrop-filter:none; }
+/* 04: a centered, quiet product stage with a model selector. */
+.studio-hero { background:oklch(.975 .003 255); padding:50px max(26px,calc((100vw - 1320px)/2)) 0; }
+.studio-heading { display:grid; grid-template-columns:1fr 1fr; align-items:end; gap:15px 50px; }
+.studio-heading .direction-overline { grid-column:1/-1; color:var(--red); }
+.studio-heading h1 { font-size:clamp(2.8rem,5vw,4.5rem); }
+.studio-heading >p { justify-self:end; color:var(--muted); font-size:.9rem; line-height:1.9; margin:0 0 7px; }
+.studio-stage { position:relative; height:350px; display:grid; place-items:center; isolation:isolate; }
+.studio-backword { position:absolute; color:oklch(.88 .009 250); font-weight:800; font-size:clamp(3rem,13vw,11rem); letter-spacing:-.03em; line-height:1; white-space:nowrap; max-width:100%; overflow:hidden; z-index:-1; }
+#studio-picture { width:min(650px,70%); height:100%; }
+#studio-picture img { width:100%; height:100%; object-fit:contain; }
+.studio-note { position:absolute; right:10px; bottom:60px; border-top:1px solid var(--ink); padding-top:12px; font-size:.72rem; line-height:1.8; }
+.studio-bottom { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:24px; padding:22px 0; border-top:1px solid var(--line); }
+.studio-product span { color:var(--muted); font-size:.7rem; }
+.studio-product h2 { margin:3px 0; font-size:1.35rem; }
+.studio-product p { margin:0; font-weight:600; font-size:.85rem; }
+.studio-tabs { display:flex; gap:9px; }
+.studio-tabs button { width:110px; padding:6px 7px 8px; border:1px solid var(--line); background:var(--white); cursor:pointer; }
+.studio-tabs button[aria-pressed="true"] { border-color:var(--red); box-shadow:inset 0 -3px var(--red); }
+.studio-tabs img { width:100%; height:47px; object-fit:contain; }
+.studio-tabs span { font-size:.62rem; font-weight:700; }
+#studio-action { justify-self:end; }
+body[data-design="studio"] .product-art { border-radius:0; background:oklch(.965 .004 255); }
+body[data-design="studio"] .product-tag { background:var(--white); color:var(--ink); border-radius:0; }
+body[data-design="studio"] .quick-view { border-radius:0; }
+body[data-design="studio"] .category-strip { border-block:1px solid var(--line); }
+/* 05: a playful product poster wall with direct product entry points. */
+.playground-hero { --accent:oklch(.5 .2 28); background:oklch(.91 .045 303); padding-top:46px; overflow:hidden; }
+.play-heading { display:grid; grid-template-columns:90px 1fr 270px; gap:25px; align-items:center; width:min(1320px,calc(100% - 64px)); margin:auto; }
+.play-heading h1 { font-size:clamp(3.4rem,6vw,5.7rem); }
+.play-heading p { font-size:.9rem; line-height:1.8; margin:0 0 22px; }
+.play-star { color:var(--accent); font-size:6rem; line-height:1; align-self:start; }
+.play-wall { display:grid; grid-template-columns:1fr 1.2fr 1fr; align-items:center; gap:24px; width:min(1320px,calc(100% - 72px)); margin:48px auto 50px; }
+.play-tile { position:relative; display:flex; flex-direction:column; align-items:stretch; padding:18px; border:0; min-width:0; cursor:pointer; text-align:left; color:var(--ink); transition:transform 250ms ease; }
+.play-tile img { width:100%; height:250px; object-fit:contain; }
+.play-tile strong { font-size:2.3rem; letter-spacing:-.03em; line-height:1.1; }
+.play-tile-label { font-size:.7rem; font-weight:600; }
+.play-tile-one { background:oklch(.96 .11 98); transform:rotate(-4deg); }
+.play-tile-two { background:oklch(.83 .08 225); transform:translateY(14px); }
+.play-tile-three { background:oklch(.84 .09 43); transform:rotate(4deg); }
+.play-tile:hover { transform:translateY(-7px) rotate(0); }
+.play-ribbon { display:flex; justify-content:space-around; gap:22px; padding:17px 20px; background:var(--accent); color:var(--white); font-size:.85rem; font-weight:700; }
+body[data-design="playground"] .product-art { border-radius:12px; background:oklch(.94 .025 303); }
+body[data-design="playground"] .product-card:nth-child(3n+2) .product-art { background:oklch(.94 .045 225); }
+body[data-design="playground"] .product-card:nth-child(3n+3) .product-art { background:oklch(.96 .06 98); }
+body[data-design="playground"] .technology-section { background:oklch(.32 .075 303); }
+/* 06: choosing a pair starts with a plan for the day. */
+.finder-hero { --accent:oklch(.3 .065 172); display:grid; grid-template-columns:.82fr 1.18fr; background:oklch(.91 .047 225); }
+.finder-intro { padding:60px clamp(26px,5vw,78px); background:var(--accent); color:var(--white); }
+.finder-intro .direction-overline { color:oklch(.85 .05 172); }
+.finder-intro h1 { margin-top:24px; font-size:clamp(3.6rem,6.3vw,6rem); }
+.finder-intro h1 em { color:oklch(.89 .15 102); }
+.finder-intro p { font-size:.91rem; line-height:1.8; margin:24px 0 28px; }
+.finder-choices { display:grid; gap:8px; }
+.finder-choices button { display:flex; align-items:center; gap:14px; padding:14px 16px; border:1px solid oklch(.62 .04 172); background:transparent; color:var(--white); cursor:pointer; font-size:.82rem; text-align:left; }
+.finder-choices button span { font-size:.65rem; opacity:.8; }
+.finder-choices button b { margin-left:auto; }
+.finder-choices button[aria-pressed="true"] { color:var(--accent); background:oklch(.89 .15 102); border-color:transparent; font-weight:700; }
+.finder-result { min-width:0; display:flex; flex-direction:column; padding:30px clamp(24px,4vw,58px); }
+.finder-result-top { display:flex; justify-content:space-between; gap:20px; font-weight:700; font-size:.68rem; letter-spacing:.08em; }
+.finder-image { display:grid; flex:1; min-height:360px; place-items:center; }
+.finder-image img { width:100%; height:360px; object-fit:contain; }
+.finder-result-bottom { display:flex; align-items:center; justify-content:space-between; gap:20px; border-top:1px solid oklch(.67 .035 225); padding-top:23px; }
+.finder-result-bottom h2 { font-size:clamp(1.7rem,3vw,3rem); margin:5px 0; line-height:1.2; }
+.finder-result-bottom p { margin:0; font-size:.9rem; font-weight:600; }
+#finder-reason { font-size:.78rem; }
+.finder-footnote { font-size:.65rem; color:var(--body); margin:22px 0 0; }
+body[data-design="dayfinder"] .product-art { border-radius:0; background:oklch(.94 .017 172); }
+body[data-design="dayfinder"] .technology-section { background:oklch(.3 .065 172); }
+body[data-design="dayfinder"] .filter-button.is-active { background:oklch(.3 .065 172); }
+@media(min-width:1050px) { body[data-design="studio"] .product-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:42px; } body[data-design="dayfinder"] .products-section { display:grid; grid-template-columns:220px 1fr; column-gap:32px; } body[data-design="dayfinder"] .section-heading { grid-column:1/-1; } body[data-design="dayfinder"] .product-controls { grid-row:2/5; flex-direction:column; justify-content:flex-start; align-items:stretch; border:0; padding-top:16px; } body[data-design="dayfinder"] .filter-list,body[data-design="dayfinder"] .product-tools { flex-direction:column; align-items:stretch; } body[data-design="dayfinder"] .product-tools { gap:12px; } body[data-design="dayfinder"] .filter-button { text-align:left; border-radius:0; } body[data-design="dayfinder"] .search-box input { width:100%; min-width:0; } body[data-design="dayfinder"] .results-line,body[data-design="dayfinder"] .product-grid,body[data-design="dayfinder"] .empty-state { grid-column:2; } }
+@media(max-width:900px) { .studio-bottom { grid-template-columns:1fr 1fr; } .studio-tabs { grid-row:2; grid-column:1/-1; justify-content:center; } .play-heading { grid-template-columns:1fr 220px; } .play-star { display:none; } .play-wall { gap:15px; } .play-tile { padding:12px; } .play-tile img { height:185px; } .play-tile strong { font-size:1.8rem; } .finder-intro { padding:38px 24px; } .finder-result { padding:28px 22px; } .finder-image,.finder-image img { min-height:280px; height:280px; } .finder-result-bottom { align-items:flex-start; flex-direction:column; } }
+@media(max-width:620px) { .studio-hero { padding:35px 20px 0; } .studio-heading { grid-template-columns:1fr; gap:14px; } .studio-heading h1 { font-size:2.85rem; } .studio-heading >p { justify-self:start; font-size:.8rem; } .studio-stage { height:270px; } #studio-picture { width:100%; } .studio-note { display:none; } .studio-bottom { gap:16px; } .studio-tabs { width:100%; } .studio-tabs button { flex:1; max-width:130px; min-width:0; } .direction-action { padding:13px 16px; font-size:.76rem; gap:14px; } .playground-hero { padding-top:30px; } .play-heading { width:calc(100% - 40px); grid-template-columns:1fr; gap:18px; } .play-heading h1 { font-size:3.55rem; } .play-heading p { font-size:.84rem; margin-bottom:15px; } .play-wall { width:calc(100% - 38px); margin:30px auto 36px; grid-template-columns:1fr 1fr; gap:13px; } .play-tile-two { grid-column:2; grid-row:1/3; align-self:stretch; justify-content:space-between; } .play-tile img { height:125px; } .play-tile-two img { height:230px; } .play-tile strong { font-size:1.55rem; } .play-tile-label { font-size:.58rem; } .play-ribbon { font-size:.66rem; gap:13px; white-space:nowrap; overflow:hidden; } .play-ribbon span:last-child { display:none; } .finder-hero { grid-template-columns:1fr; } .finder-intro { padding:35px 22px; } .finder-intro h1 { font-size:4rem; } .finder-intro h1 br { display:none; } .finder-intro p { margin:16px 0 24px; } .finder-choices { gap:7px; } .finder-result { padding:24px 22px; } .finder-result-bottom { flex-direction:row; align-items:center; } #finder-reason { font-size:.68rem; } .finder-result-bottom h2 { font-size:1.6rem; } }
+@media(prefers-reduced-motion:reduce) { .direction-action,.play-tile { transition:none; } }

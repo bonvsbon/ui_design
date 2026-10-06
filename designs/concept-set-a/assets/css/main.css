@@ -1,0 +1,275 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------
+   Design tokens
+   Each concept sets the same token names on its layout root
+   (.theme-c01 … .theme-c05). Components only ever reference tokens.
+   ------------------------------------------------------------------ */
+:root {
+  --container: 1440px;
+  --gutter: 16px;
+  --section-y: 64px;
+  --nav-h: 60px;
+  --tabbar-h: 64px;
+
+  --bg: #ffffff;
+  --surface: #f5f5f5;
+  --surface-2: #ebebeb;
+  --ink: #111111;
+  --ink-2: #2a2a2a;
+  --muted: #5b5b5b;
+  --line: #dddddd;
+  --accent: #111111;
+  --accent-ink: #ffffff;
+  --accent-text: #111111;
+  --accent-2: #444444;
+  --accent-2-ink: #ffffff;
+  --sale: #c0262d;
+  --inverse: #111111;
+  --inverse-ink: #ffffff;
+  --focus: #2563eb;
+
+  --font-display: 'IBM Plex Sans Thai', system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans Thai', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --r-btn: 8px;
+  --r-card: 12px;
+  --r-media: 8px;
+  --r-chip: 999px;
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.06);
+  --shadow-pop: 0 24px 60px -20px rgb(0 0 0 / 0.35);
+}
+
+@media (min-width: 768px) {
+  :root { --gutter: 32px; --section-y: 96px; --nav-h: 68px; }
+}
+@media (min-width: 1280px) {
+  :root { --gutter: 48px; --section-y: 128px; }
+}
+
+/* CONCEPT 01 — Premium Street: bone, black, one signal orange. Square, editorial. */
+.theme-c01 {
+  --bg: #f3f1ec;
+  --surface: #ffffff;
+  --surface-2: #e8e5de;
+  --ink: #0d0d0d;
+  --ink-2: #2b2a28;
+  --muted: #5c5a55;
+  --line: #d6d2c9;
+  --accent: #ff5a1f;
+  --accent-ink: #0d0d0d;
+  --accent-text: #b83c0d;
+  --accent-2: #0d0d0d;
+  --accent-2-ink: #f3f1ec;
+  --sale: #b83c0d;
+  --inverse: #0d0d0d;
+  --inverse-ink: #f3f1ec;
+  --focus: #ff5a1f;
+  --font-display: 'Archivo', 'IBM Plex Sans Thai', system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans Thai', 'Archivo', system-ui, sans-serif;
+  --font-mono: 'Archivo', system-ui, sans-serif;
+  --r-btn: 0px;
+  --r-card: 0px;
+  --r-media: 0px;
+  --r-chip: 0px;
+  --shadow-card: none;
+  --shadow-pop: 0 30px 80px -30px rgb(0 0 0 / 0.4);
+}
+
+/* CONCEPT 02 — Bold Sport: asphalt, volt, cobalt. Chunky radii, condensed type. */
+.theme-c02 {
+  --bg: #f1f1ea;
+  --surface: #ffffff;
+  --surface-2: #e2e2d8;
+  --ink: #0a0a0a;
+  --ink-2: #1d1d1d;
+  --muted: #4e4e48;
+  --line: #cfcfc4;
+  --accent: #d7ff3a;
+  --accent-ink: #0a0a0a;
+  --accent-text: #3b4a00;
+  --accent-2: #2b37ff;
+  --accent-2-ink: #ffffff;
+  --sale: #e5262d;
+  --inverse: #0a0a0a;
+  --inverse-ink: #f1f1ea;
+  --focus: #2b37ff;
+  --font-display: 'Anton', 'Kanit', Impact, sans-serif;
+  --font-body: 'Kanit', system-ui, sans-serif;
+  --font-mono: 'Kanit', system-ui, sans-serif;
+  --r-btn: 999px;
+  --r-card: 28px;
+  --r-media: 22px;
+  --r-chip: 999px;
+  --shadow-card: 0 2px 0 #0a0a0a;
+  --shadow-pop: 6px 6px 0 #0a0a0a;
+}
+
+/* CONCEPT 03 — Lifestyle Storytelling: paper, terracotta, olive. Serif editorial. */
+.theme-c03 {
+  --bg: #f5eee3;
+  --surface: #fffaf3;
+  --surface-2: #ece2d2;
+  --ink: #2a211b;
+  --ink-2: #3d322a;
+  --muted: #6a5c50;
+  --line: #dccfbd;
+  --accent: #a94b25;
+  --accent-ink: #fffaf3;
+  --accent-text: #9a4220;
+  --accent-2: #56623a;
+  --accent-2-ink: #fffaf3;
+  --sale: #a94b25;
+  --inverse: #2a211b;
+  --inverse-ink: #f5eee3;
+  --focus: #a94b25;
+  --font-display: 'Fraunces', 'Noto Serif Thai', Georgia, serif;
+  --font-body: 'Anuphan', system-ui, sans-serif;
+  --font-mono: 'Anuphan', system-ui, sans-serif;
+  --r-btn: 999px;
+  --r-card: 6px;
+  --r-media: 4px;
+  --r-chip: 999px;
+  --shadow-card: 0 1px 0 rgb(42 33 27 / 0.08);
+  --shadow-pop: 0 30px 60px -30px rgb(42 33 27 / 0.45);
+}
+
+/* CONCEPT 04 — Smart Commerce: clean white, cobalt action, sunflower promo. */
+.theme-c04 {
+  --bg: #ffffff;
+  --surface: #f4f6f9;
+  --surface-2: #e8ecf2;
+  --ink: #0f172a;
+  --ink-2: #1e293b;
+  --muted: #475569;
+  --line: #e2e8f0;
+  --accent: #1d4ed8;
+  --accent-ink: #ffffff;
+  --accent-text: #1d4ed8;
+  --accent-2: #ffd24a;
+  --accent-2-ink: #0f172a;
+  --sale: #dc2626;
+  --inverse: #0f172a;
+  --inverse-ink: #ffffff;
+  --focus: #1d4ed8;
+  --font-display: 'Plus Jakarta Sans', 'Noto Sans Thai', system-ui, sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'Noto Sans Thai', system-ui, sans-serif;
+  --font-mono: 'Plus Jakarta Sans', 'Noto Sans Thai', system-ui, sans-serif;
+  --r-btn: 12px;
+  --r-card: 16px;
+  --r-media: 12px;
+  --r-chip: 999px;
+  --shadow-card: 0 1px 2px rgb(15 23 42 / 0.06), 0 1px 1px rgb(15 23 42 / 0.04);
+  --shadow-pop: 0 20px 50px -12px rgb(15 23 42 / 0.25);
+}
+
+/* CONCEPT 05 — Future Footwear: graphite lab, bone paper, amber signal. */
+.theme-c05 {
+  --bg: #121315;
+  --surface: #1b1c1f;
+  --surface-2: #26282c;
+  --ink: #ecebe6;
+  --ink-2: #c9c8c2;
+  --muted: #9a9993;
+  --line: #34363b;
+  --accent: #ffb547;
+  --accent-ink: #121315;
+  --accent-text: #ffb547;
+  --accent-2: #ecebe6;
+  --accent-2-ink: #121315;
+  --sale: #ff8a65;
+  --inverse: #ecebe6;
+  --inverse-ink: #121315;
+  --focus: #ffb547;
+  --font-display: 'Space Grotesk', 'IBM Plex Sans Thai', system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans Thai', 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --r-btn: 2px;
+  --r-card: 4px;
+  --r-media: 2px;
+  --r-chip: 2px;
+  --shadow-card: none;
+  --shadow-pop: 0 30px 80px -20px rgb(0 0 0 / 0.7);
+}
+/* Light "paper" sections inside the dark tech concept */
+.theme-c05 .paper {
+  --bg: #ecebe6;
+  --surface: #f6f5f1;
+  --surface-2: #dddcd5;
+  --ink: #121315;
+  --ink-2: #26282c;
+  --muted: #55565a;
+  --line: #c9c8c1;
+  --accent-text: #8a5300;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+/* ------------------------------------------------------------------ */
+@layer base {
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* Thai stacks need taller line-height than Latin to keep tone marks clear */
+    line-height: 1.6;
+  }
+  img { max-width: 100%; height: auto; }
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+  }
+  ::selection { background: var(--accent); color: var(--accent-ink); }
+  [hidden] { display: none !important; }
+}
+
+@layer components {
+  .container-site {
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+  .sr-only-focusable:not(:focus) {
+    position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+  }
+  .skip-link {
+    position: fixed; left: 12px; top: -60px; z-index: 100;
+    background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: var(--r-btn);
+    transition: top .2s;
+  }
+  .skip-link:focus { top: 12px; }
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .tabbar-safe { padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom)); }
+  @media (min-width: 1024px) { .tabbar-safe { padding-bottom: 0; } }
+
+  /* Product cut-out photos are shot on white: multiply lets tinted plates show through */
+  .on-plate { mix-blend-mode: multiply; }
+}
+
+/* Motion: everything decorative is opt-out */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.fade-enter-active, .fade-leave-active { transition: opacity .25s ease; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
+.slide-r-enter-active, .slide-r-leave-active { transition: transform .35s cubic-bezier(.22,1,.36,1); }
+.slide-r-enter-from, .slide-r-leave-to { transform: translateX(100%); }
+.slide-up-enter-active, .slide-up-leave-active { transition: transform .35s cubic-bezier(.22,1,.36,1); }
+.slide-up-enter-from, .slide-up-leave-to { transform: translateY(100%); }
+
+.slide-l-enter-active, .slide-l-leave-active { transition: transform .35s cubic-bezier(.22,1,.36,1); }
+.slide-l-enter-from, .slide-l-leave-to { transform: translateX(-100%); }

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GAMBOL Design Library</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;600&display=swap">
+<style>
+:root {
+  --bg: oklch(0.975 0 0);
+  --card: oklch(1 0 0);
+  --ink: oklch(0.2 0 0);
+  --muted: oklch(0.45 0 0);
+  --line: oklch(0.88 0 0);
+  --chip: oklch(0.96 0 0);
+  --btn: oklch(0.19 0 0);
+  --btn-ink: oklch(1 0 0);
+  --red: oklch(0.52 0.21 26);
+  --red-soft: oklch(0.96 0.025 26);
+  --focus: oklch(0.48 0.11 230);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: oklch(0.17 0 0); --card: oklch(0.22 0 0); --ink: oklch(0.95 0 0); --muted: oklch(0.72 0 0);
+    --line: oklch(0.32 0 0); --chip: oklch(0.27 0 0); --btn: oklch(0.95 0 0); --btn-ink: oklch(0.17 0 0);
+    --red: oklch(0.66 0.19 26); --red-soft: oklch(0.27 0.05 26); --focus: oklch(0.75 0.11 230);
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.55 'Manrope', 'Noto Sans Thai', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.wrap { max-width: 1360px; margin: 0 auto; padding: 0 56px; }
+header.top { padding: 64px 0 40px; display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; }
+.label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 20px; }
+h1 { font-size: clamp(40px, 6vw, 76px); line-height: 1.04; letter-spacing: -0.045em; margin: 0; font-weight: 700; }
+header.top p { max-width: 400px; color: var(--muted); margin: 0; font-size: 14px; }
+header.top p a { font-weight: 600; }
+section { padding: 32px 0 56px; }
+.section-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; border-top: 1px solid var(--line); padding-top: 22px; margin-bottom: 24px; }
+.section-head h2 { white-space: nowrap; font-size: 26px; letter-spacing: -0.03em; margin: 0; }
+.section-head span { color: var(--muted); font-size: 13px; }
+
+/* Featured */
+.featured { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.feature { background: var(--card); display: flex; flex-direction: column; border: 2px solid var(--red); }
+.feature-art { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--chip); }
+.feature-art img, .card-art img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.4s ease; }
+.feature-art:hover img, .card-art:hover img { transform: scale(1.025); }
+.badge { position: absolute; top: 16px; left: 16px; background: var(--red); color: white; font-size: 12px; font-weight: 700; padding: 6px 12px; letter-spacing: 0.02em; }
+.feature-body { padding: 28px; display: flex; flex-direction: column; align-items: flex-start; flex: 1; }
+.eyebrow { font-size: 12px; font-weight: 700; color: var(--red); margin: 0 0 6px; letter-spacing: 0.04em; text-transform: uppercase; }
+.feature h3 { font-size: 30px; letter-spacing: -0.035em; line-height: 1.1; margin: 0; }
+.summary { color: var(--muted); margin: 14px 0 16px; max-width: 60ch; }
+.highlights { margin: 0 0 22px; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 14px; }
+.highlights li { padding-left: 22px; position: relative; }
+.highlights li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 10px; height: 10px; background: var(--red); }
+.pages { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 24px; }
+.pages a { font-size: 12px; font-weight: 600; text-decoration: none; padding: 6px 12px; background: var(--red-soft); border-radius: 999px; }
+.pages a:hover { background: var(--red); color: white; }
+
+/* Grid */
+.grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.card { background: var(--card); display: flex; flex-direction: column; }
+.card-art { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--chip); }
+.num { position: absolute; top: 14px; left: 14px; background: var(--card); color: var(--ink); font-size: 12px; font-weight: 700; padding: 4px 9px; }
+.card-body { padding: 22px; display: flex; flex-direction: column; align-items: flex-start; flex: 1; }
+.card h3 { font-size: 20px; letter-spacing: -0.03em; margin: 0; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 22px; }
+.tags span { font-size: 11px; font-weight: 600; padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); }
+.feature .tags { margin: 12px 0 0; }
+.btn { margin-top: auto; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 20px; border-radius: 8px;
+  background: var(--btn); color: var(--btn-ink); font-weight: 600; font-size: 13px; text-decoration: none; }
+.feature .btn { background: var(--red); color: white; }
+.btn:hover { opacity: 0.85; }
+.ph { width: 100%; height: 100%; }
+footer { color: var(--muted); font-size: 12px; padding: 0 0 48px; }
+
+@media (max-width: 1024px) {
+  .featured { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 767px) {
+  .wrap { padding: 0 16px; }
+  header.top { display: block; padding: 40px 0 24px; }
+  header.top p { margin-top: 18px; }
+  .grid { grid-template-columns: 1fr; }
+  .feature-body { padding: 22px; }
+  .feature h3 { font-size: 25px; }
+}
+@media (prefers-reduced-motion: reduce) { .feature-art img, .card-art img { transition: none; } }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="top">
+    <div>
+      <p class="label">GAMBOL / Design Library</p>
+      <h1>Every direction,<br>one library.</h1>
+    </div>
+    <p>{{COUNT}} working storefront prototypes across two concept sets. Each one opens offline with its full shopping journey. The two featured designs are built from references: {{REFS}}.</p>
+  </header>
+
+  <section aria-labelledby="h-featured">
+    <div class="section-head"><h2 id="h-featured">★ Featured</h2><span>REEF × GAMBOL reference builds</span></div>
+    <div class="featured">
+{{FEATURED}}
+    </div>
+  </section>
+
+  <section aria-labelledby="h-set-a">
+    <div class="section-head"><h2 id="h-set-a">Concept Set A</h2><span>5 concepts</span></div>
+    <ul class="grid">
+{{SET_A}}
+    </ul>
+  </section>
+
+  <section aria-labelledby="h-set-b">
+    <div class="section-head"><h2 id="h-set-b">Concept Set B</h2><span>5 concepts</span></div>
+    <ul class="grid">
+{{SET_B}}
+    </ul>
+  </section>
+
+  <footer>Frontend prototypes only. Product names, prices, offers, stores, and checkout are illustrative. REEF is used as a UX-pattern reference only.</footer>
+</main>
+</body>
+</html>
